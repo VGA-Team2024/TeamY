@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     /// <summary> point of game </summary>
     [SerializeField] private ulong _point = 1000;
     [SerializeField] private List<Item> _items = new List<Item>();
-    [SerializeField] private bool _timer = true;   
+    [SerializeField] private bool _timer = true;
+    [SerializeField] private ulong _clickPoint = 2;
     public static GameManager Instance {get; private set; }
     public event Action OnPointChanged;    
     private void Awake()
@@ -53,7 +54,12 @@ public class GameManager : MonoBehaviour
     {
         return _point;
     }
-    
+
+    public void Click()
+    {
+        SetPoint(GetPoint() + _clickPoint); 
+    }
+
     private IEnumerator count()
     {
         while (_timer)
