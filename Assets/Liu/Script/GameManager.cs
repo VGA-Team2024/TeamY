@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
     {
         return _point;
     }
-
+    /// <summary>  Click したらここ呼ぶ</summary>
     public void Click()
     {
         SetPoint(GetPoint() + _clickPoint); 
