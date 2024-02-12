@@ -17,7 +17,7 @@ public class UIPoint : MonoBehaviour
 
     void FixedUpdate()
     {
-        _textMeshProUGUI.SetText(GameManager.Instance.GetPointAsString());
+        _textMeshProUGUI.SetText(GameManager.Instance.GetPoint().ToketaString());
     }
 
     

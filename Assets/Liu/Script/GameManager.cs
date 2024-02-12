@@ -51,6 +51,11 @@ public class GameManager : MonoBehaviour
         OnPointChanged?.Invoke();
     }
 
+    public void ChangePoint(ulong value)
+    {
+        SetPoint(GetPoint() + value);
+    }
+
     /// <summary> Geter </summary>
     /// <returns> Game point </returns>
     public ulong GetPoint()
@@ -64,40 +69,100 @@ public class GameManager : MonoBehaviour
         SetPoint(GetPoint() + _clickPoint);
     }
 
-    public ulong GetPointkata()
-    {
-        return _point;
-    }
-
-    /// <summary> ポイントを文字列として取得 </summary>
-    /// <returns> ポイントの文字列表現 </returns>
-    public string GetPointAsString()
-    {
-        string[] suffixes = {"k", "m", "b" ,"t","a","b","c","d"}; // サフィックスの配列
-
-        ulong tmp = _point;
-        string result = "";
-        for ( int i = 0 ; tmp > 0 ; i++)
-        {
-            if (tmp >= 1000)
-            {
-                result = suffixes[i] + (tmp % 1000).ToString("000") + result;
-                tmp /= 1000;
-            }
-            else
-            {
-                result = tmp + result;
-                tmp = 0;
-            }
-        }
-        return  result;
-    }
-
     private IEnumerator count()
     {
         while (_timer)
         {
             yield return new WaitForSeconds(1f); // 1秒待つ
         }
+    }
+}
+
+
+static class LiuToketaString
+{
+    /// <summary>
+    ///  値を桁あり文字列として取得
+    /// 例:10000000 >>  10M000K000
+    /// </summary>
+    /// <param name="num">   文字列として取得したい値   </param>
+    /// <returns>桁あり文字列表現</returns>
+    public static string ToketaString(this ulong num)
+    {
+        string[] suffixes = { "K", "M", "G", "T", "P", "E", "Z", "Y" }; // サフィックスの配列
+
+        string result = "";
+        for (int i = 0; num > 0; i++)
+        {
+            if (num >= 1000)
+            {
+                result = suffixes[i] + (num % 1000).ToString("000") + result;
+                num /= 1000;
+            }
+            else
+            {
+                result = num + result;
+                num = 0;
+            }
+        }
+        return result;
+    }
+    public static string TocammaString(this ulong num)
+    {
+        string result = "";
+        for (int i = 0; num > 0; i++)
+        {
+            if (num >= 1000)
+            {
+                result = "," + (num % 1000).ToString("000") + result;
+                num /= 1000;
+            }
+            else
+            {
+                result = num + result;
+                num = 0;
+            }
+        }
+        return result;
+    }
+    
+    public static string ToketaString(this int num)
+    {
+        string[] suffixes = { "K", "M", "G", "T", "P", "E", "Z", "Y" }; // サフィックスの配列
+
+        string result = "";
+        for (int i = 0; num > 0; i++)
+        {
+            if (num >= 1000)
+            {
+                result = suffixes[i] + (num % 1000).ToString("000") + result;
+                num /= 1000;
+            }
+            else
+            {
+                result = num + result;
+                num = 0;
+            }
+        }
+        return result;
+    }
+
+    public static string TocammaString(this int num)
+    {
+        string result = "";
+        for (int i = 0; num > 0; i++)
+        {
+            if (num >= 1000)
+            {
+                result = "," + (num % 1000).ToString("000") + result;
+                num /= 1000;
+            }
+            else
+            {
+                result = num + result;
+                num = 0;
+            }
+        }
+        return result;
     }
 }
