@@ -1,168 +1,36 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
-
 public class GameManager : MonoBehaviour
 {
-    /// <summary> point of game </summary>
-    [SerializeField] private ulong _point = 1000;
-    [SerializeField] private bool _timer = true;
-    [SerializeField] private ulong _clickPoint = 2;
-    public static GameManager Instance { get; private set; }
-    public event Action OnPointChanged;
+    /// <summary>ƒŠƒ\[ƒX‚ğ•\¦‚·‚éƒeƒLƒXƒg</summary>
+    [SerializeField] TextMeshProUGUI _resourceText;
 
-    private void Awake()
+    /// <summary>ƒŠƒ\[ƒX</summary>
+    private ulong _currentResource = 0;
+
+    /// <summary>ƒŠƒ\[ƒXŠÇ—ƒNƒ‰ƒX</summary>
+    ResourceManager _resourceManager = null;
+    void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Debug.LogError("LIULIU : SecundGameManager");
-            Destroy(gameObject);
-        }
+        _resourceManager = ResourceManager.Instance;
+    }
+    void Update()
+    {
+        // ƒŠƒ\[ƒX‚ğ“¯Šú
+        SynchronizeResource();
+        // ƒeƒLƒXƒg‚ğXV
+        SetText();
     }
 
-    /// <summary>ã€€Set Game Pointã€€</summary>
-    /// <param name="newPoint"> è¨ˆç®—ã—ãŸå¾Œã®ã€€ãƒã‚¤ãƒ³ãƒˆã€€</param>
-    public void SetPoint(ulong newPoint)
+    /// <summary>ƒŠƒ\[ƒX‚ğ“¯Šú‚³‚¹‚éƒƒ\ƒbƒh</summary>
+    void SynchronizeResource()
     {
-        if (newPoint < 0)
-        {
-            newPoint = 0;
-            Debug.LogError("LIULIU : point Under 0");
-            return;
-        }
-        else if (newPoint < 10000000000000000000)
-        {
-            _point = newPoint;
-            return;
-        }
-        else
-        {
-            newPoint = 10000000000000000000;
-            Debug.LogError("LIULIU : é€²æ•°");
-        }
-
-        OnPointChanged?.Invoke();
+        _currentResource = _resourceManager.GetResource();
     }
 
-    public void ChangePoint(ulong value)
+    /// <summary>ƒeƒLƒXƒg‚ğİ’è‚·‚éƒƒ\ƒbƒh</summary>
+    void SetText()
     {
-        SetPoint(GetPoint() + value);
-    }
-
-    /// <summary> Geter </summary>
-    /// <returns> Game point </returns>
-    public ulong GetPoint()
-    {
-        return _point;
-    }
-
-    /// <summary>  Click ã—ãŸã‚‰ã“ã“å‘¼ã¶</summary>
-    public void Click()
-    {
-        SetPoint(GetPoint() + _clickPoint);
-    }
-
-    private IEnumerator count()
-    {
-        while (_timer)
-        {
-            yield return new WaitForSeconds(1f); // 1ç§’å¾…ã¤
-        }
-    }
-}
-
-
-static class LiuToketaString
-{
-    /// <summary>
-    ///  å€¤ã‚’æ¡ã‚ã‚Šæ–‡å­—åˆ—ã¨ã—ã¦å–å¾—
-    /// ä¾‹:10000000 >>  10M000K000
-    /// </summary>
-    /// <param name="num">   æ–‡å­—åˆ—ã¨ã—ã¦å–å¾—ã—ãŸã„å€¤   </param>
-    /// <returns>æ¡ã‚ã‚Šæ–‡å­—åˆ—è¡¨ç¾</returns>
-    public static string ToketaString(this ulong num)
-    {
-        string[] suffixes = { "K", "M", "G", "T", "P", "E", "Z", "Y" }; // ã‚µãƒ•ã‚£ãƒƒã‚¯ã‚¹ã®é…åˆ—
-
-        string result = "";
-        for (int i = 0; num > 0; i++)
-        {
-            if (num >= 1000)
-            {
-                result = suffixes[i] + (num % 1000).ToString("000") + result;
-                num /= 1000;
-            }
-            else
-            {
-                result = num + result;
-                num = 0;
-            }
-        }
-        return result;
-    }
-    public static string TocammaString(this ulong num)
-    {
-        string result = "";
-        for (int i = 0; num > 0; i++)
-        {
-            if (num >= 1000)
-            {
-                result = "," + (num % 1000).ToString("000") + result;
-                num /= 1000;
-            }
-            else
-            {
-                result = num + result;
-                num = 0;
-            }
-        }
-        return result;
-    }
-    
-    public static string ToketaString(this int num)
-    {
-        string[] suffixes = { "K", "M", "G", "T", "P", "E", "Z", "Y" }; // ã‚µãƒ•ã‚£ãƒƒã‚¯ã‚¹ã®é…åˆ—
-
-        string result = "";
-        for (int i = 0; num > 0; i++)
-        {
-            if (num >= 1000)
-            {
-                result = suffixes[i] + (num % 1000).ToString("000") + result;
-                num /= 1000;
-            }
-            else
-            {
-                result = num + result;
-                num = 0;
-            }
-        }
-        return result;
-    }
-
-    public static string TocammaString(this int num)
-    {
-        string result = "";
-        for (int i = 0; num > 0; i++)
-        {
-            if (num >= 1000)
-            {
-                result = "," + (num % 1000).ToString("000") + result;
-                num /= 1000;
-            }
-            else
-            {
-                result = num + result;
-                num = 0;
-            }
-        }
-        return result;
+        _resourceText.text = $"{_currentResource.UlongToComma()} G";
     }
 }
