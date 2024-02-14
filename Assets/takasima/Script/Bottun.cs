@@ -4,22 +4,13 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class Bottun : MonoBehaviour, IPointerDownHandler
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    //‚±‚ê‚ÍUIƒWƒƒ‚Å‚«‚È‚¢
+    //void OnMouseDown()
+    //{
+    //    Debug.Log("dekiru");
+    //}
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    void OnMouseDown()
-    {
-        Debug.Log("dekiru");
-    }
-
+    //UI‚Í‚±‚Á‚¿
     public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("dekiru");
