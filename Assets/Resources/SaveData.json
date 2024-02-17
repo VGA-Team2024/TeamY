@@ -1,0 +1,18 @@
+{
+    "Score": 1000,
+    "facilitiesDataList": [
+        {
+            "name": "カーソル",
+            "ownedNum": 0
+        },
+        {
+            "name": "グランマ",
+            "ownedNum": 0
+        }
+    ],
+    "upGradsList": [
+        {
+            "instanceID": 34220
+        }
+    ]
+}
