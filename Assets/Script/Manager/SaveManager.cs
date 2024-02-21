@@ -39,7 +39,7 @@ public class SaveManager : MonoBehaviour
                 name = facility._name,
                 ownedNum = facility._ownedNum,
                 currentPrice = facility._currentPrice,
-                isUpGraded = facility._isUpGraded,
+                currentUpgradeFactor = facility._currentUpgradeFactor,
             }
             ) ;
         }
@@ -72,7 +72,7 @@ class FacilityData
     public string name;
     public ulong ownedNum;
     public ulong currentPrice;
-    public bool isUpGraded;
+    public ulong currentUpgradeFactor;
 }
 [Serializable]
 class UpGradeData

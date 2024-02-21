@@ -53,7 +53,7 @@ public class LoadManager : MonoBehaviour
             {
                 facility._ownedNum = facilityData.ownedNum;
                 facility._currentPrice = facilityData.currentPrice;
-                facility._isUpGraded = facilityData.isUpGraded;
+                facility._currentUpgradeFactor = facilityData.currentUpgradeFactor;
             }
         }
         if (savedata.upGradsDataList.Count == 0)
