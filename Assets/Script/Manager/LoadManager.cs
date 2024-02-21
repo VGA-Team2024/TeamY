@@ -1,17 +1,17 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System.IO;
 
 /// <summary>
-/// Instance.Load()‚ğŒÄ‚Ô‚Æ
-/// Resourcesƒtƒ@ƒCƒ‹‚É‚ ‚éSaveData‚ğƒ[ƒh‚µ‚ÄƒQ[ƒ€“à‚Ìƒf[ƒ^‚É”½‰f‚³‚¹‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+/// Instance.Load()ã‚’å‘¼ã¶ã¨
+/// Resourcesãƒ•ã‚¡ã‚¤ãƒ«ã«ã‚ã‚‹SaveDataã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¦ã‚²ãƒ¼ãƒ å†…ã®ãƒ‡ãƒ¼ã‚¿ã«åæ˜ ã•ã›ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
 /// </summary>
 public class LoadManager : MonoBehaviour
 {
     public static LoadManager instance;
-    //ƒVƒ“ƒOƒ‹ƒgƒ“
+    //ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³
     void Awake()
     {
         if (instance == null)
@@ -36,9 +36,9 @@ public class LoadManager : MonoBehaviour
     {
         TextAsset jsonLoad = Resources.Load<TextAsset>("SaveData");
         SaveData savedata = JsonUtility.FromJson<SaveData>(jsonLoad.text);
-        //«ƒ[ƒh‚µ‚½ƒf[ƒ^‚ğŠeƒf[ƒ^‚É“ü‚ê‚é
+        //â†“ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’å„ãƒ‡ãƒ¼ã‚¿ã«å…¥ã‚Œã‚‹
         DataSet(savedata);
-        Debug.Log($"ƒ[ƒh‚µ‚½");
+        Debug.Log($"ãƒ­ãƒ¼ãƒ‰ã—ãŸ");
     }
 
     void DataSet(SaveData savedata)
@@ -47,11 +47,11 @@ public class LoadManager : MonoBehaviour
         foreach (var facilityData in savedata.facilitiesDataList)
         {
             foreach (var facility in from Transform child in _shopPanel.transform
-                                         //let‚ÅƒNƒGƒŠ\•¶‚Ì‚È‚©‚Åˆê’U‚â‚è‚½‚¢‚±‚Æ‚ğ‘‚¯‚é
+                                         //letã§ã‚¯ã‚¨ãƒªæ§‹æ–‡ã®ãªã‹ã§ä¸€æ—¦ã‚„ã‚ŠãŸã„ã“ã¨ã‚’æ›¸ã‘ã‚‹
                                      let facility = child.gameObject.GetComponent<Facility>()
-                                     //where‚ÅFacility‚ªƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚échild‚ğ’T‚·+ƒ¿
+                                     //whereã§FacilityãŒã‚¢ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ã‚‹childã‚’æ¢ã™+Î±
                                      where child.gameObject.GetComponent<Facility>() && facility._name == facilityData.name
-                                     //ÅI“I‚É—~‚µ‚¢object‚ğselect‚·‚éA¡‰ñ‚ÍFacility[]
+                                     //æœ€çµ‚çš„ã«æ¬²ã—ã„objectã‚’selectã™ã‚‹ã€ä»Šå›ã¯Facility[]
                                      select facility)
             {
                 facility._ownedNum = facilityData.ownedNum;
@@ -72,7 +72,7 @@ public class LoadManager : MonoBehaviour
             foreach (var upGradeData in from upGradeData in savedata.upGradsDataList
                                         let upGrades = _shopPanel.GetComponentsInChildren<UpGrade>()
                                         where upGrades == null || !upGrades.Any(x => x._name == upGradeData.name)
-                                        select upGradeData)//¡‚ÌƒV[ƒ““à‚Ìƒf[ƒ^‚ÉASavedata‚É‚ ‚éƒAƒbƒvƒOƒŒ[ƒh‚Ìobject‚ª‚È‚©‚Á‚½‚çAV‚µ‚­¶¬‚³‚ê‚Ü‚·
+                                        select upGradeData)//ä»Šã®ã‚·ãƒ¼ãƒ³å†…ã®ãƒ‡ãƒ¼ã‚¿ã«ã€Savedataã«ã‚ã‚‹ã‚¢ãƒƒãƒ—ã‚°ãƒ¬ãƒ¼ãƒ‰ã®objectãŒãªã‹ã£ãŸã‚‰ã€æ–°ã—ãç”Ÿæˆã•ã‚Œã¾ã™
 
             {
                 Instantiate(upGradeData.gameObject, _shopPanel.transform).SetActive(true);
