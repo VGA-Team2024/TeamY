@@ -9,7 +9,7 @@ public class AutoSave : MonoBehaviour
     void Update()
     {
         _timer += Time.deltaTime;
-        if(_timer > _autoSaveTime)
+        if(_timer >= _autoSaveTime)
         {
             SaveManager.instance.Save();
             _timer = 0;

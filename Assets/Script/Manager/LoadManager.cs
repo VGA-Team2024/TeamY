@@ -22,16 +22,13 @@ public class LoadManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    [SerializeField]
-    GameObject _shopPanel;
-    void Start()
-    {
         if (File.Exists($"Assets/Resources/SaveData.json"))
         {
             Load();
         }
     }
+    [SerializeField]
+    GameObject _shopPanel;
     public void Load()
     {
         TextAsset jsonLoad = Resources.Load<TextAsset>("SaveData");
@@ -55,6 +52,7 @@ public class LoadManager : MonoBehaviour
                                      select facility)
             {
                 facility._ownedNum = facilityData.ownedNum;
+                facility._currentPrice = facilityData.currentPrice;
                 facility._isUpGraded = facilityData.isUpGraded;
             }
         }
@@ -73,7 +71,6 @@ public class LoadManager : MonoBehaviour
                                         let upGrades = _shopPanel.GetComponentsInChildren<UpGrade>()
                                         where upGrades == null || !upGrades.Any(x => x._name == upGradeData.name)
                                         select upGradeData)//今のシーン内のデータに、Savedataにあるアップグレードのobjectがなかったら、新しく生成されます
-
             {
                 Instantiate(upGradeData.gameObject, _shopPanel.transform).SetActive(true);
             }
