@@ -1,16 +1,16 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using Unity.VisualScripting;
 /// <summary>
-/// Instance.Save()‚ğŒÄ‚Ô‚Æ
-/// ‚»‚Ì‚ÌƒQ[ƒ€“à‚Ìƒf[ƒ^‚ªResourcesƒtƒ@ƒCƒ‹‚Ì’†‚ÉSaveData.json‚Æ‚µ‚Äo—Í‚³‚ê‚Ü‚·B
+/// Instance.Save()ã‚’å‘¼ã¶ã¨
+/// ãã®æ™‚ã®ã‚²ãƒ¼ãƒ å†…ã®ãƒ‡ãƒ¼ã‚¿ãŒResourcesãƒ•ã‚¡ã‚¤ãƒ«ã®ä¸­ã«SaveData.jsonã¨ã—ã¦å‡ºåŠ›ã•ã‚Œã¾ã™ã€‚
 /// </summary>
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager instance;
-    //ƒVƒ“ƒOƒ‹ƒgƒ“
+    //ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³
     void Awake()
     {
         if(instance == null)
@@ -30,12 +30,12 @@ public class SaveManager : MonoBehaviour
         UpGrade[] upGrades = _shopPanel.GetComponentsInChildren<UpGrade>();
         List<FacilityData> facilitiesData = new();
         List<UpGradeData> upgGadesData = new();
-        //ShopPanel‚Ìq‚Ìobject‚É‘Î‰‚·‚éƒRƒ“ƒ|[ƒlƒ“ƒg‚ªƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚½‚ç
-        //List‚É’Ç‰Á‚·‚éB
+        //ShopPanelã®å­ã®objectã«å¯¾å¿œã™ã‚‹ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆãŒã‚¢ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ãŸã‚‰
+        //Listã«è¿½åŠ ã™ã‚‹ã€‚
         foreach (Facility facility in facilities)
         {
             facilitiesData.Add(new FacilityData()
-            {//facility._name‚ªpublic‚¶‚á‚È‚©‚Á‚½‚©‚ç•ÏX‚ğ‚¨Šè‚¢‚·‚é
+            {//facility._nameãŒpublicã˜ã‚ƒãªã‹ã£ãŸã‹ã‚‰å¤‰æ›´ã‚’ãŠé¡˜ã„ã™ã‚‹
                 name = facility._name,
                 ownedNum = facility._ownedNum,
                 isUpGraded = facility._isUpGraded,
@@ -47,22 +47,22 @@ public class SaveManager : MonoBehaviour
             upgGadesData.Add(new UpGradeData()
             {
                 name = upgrade._name,
-                //e‚Ìgameobject‚Ìactive‚Æ‚Á‚Ä—ˆ‚Ä‚éA‚ ‚Æ‚Å•Ï‚¦‚é
+                //è¦ªã®gameobjectã®activeã¨ã£ã¦æ¥ã¦ã‚‹ã€ã‚ã¨ã§å¤‰ãˆã‚‹
                 isOwned = !upgrade.GameObject().activeSelf,
                 gameObject = upgrade.gameObject,
             }) ;
         }
 
-        //ˆø‚Á’£‚Á‚Ä‚«‚½ƒf[ƒ^‚ğSeveDataƒNƒ‰ƒX‚Ånew
+        //å¼•ã£å¼µã£ã¦ããŸãƒ‡ãƒ¼ã‚¿ã‚’SeveDataã‚¯ãƒ©ã‚¹ã§new
         SaveData seveData = new()
         {
             score = ResourceManager.Instance.GetResource(),
             facilitiesDataList = facilitiesData,
             upGradsDataList = upgGadesData
         };
-        String json = JsonUtility.ToJson(seveData, true);//‚±‚±‚ÅSeveData‚ğJson‚É•ÏŠ·
+        String json = JsonUtility.ToJson(seveData, true);//ã“ã“ã§SeveDataã‚’Jsonã«å¤‰æ›
         File.WriteAllText($"Assets/Resources/SaveData.json", json);
-        Debug.Log($"ƒZ[ƒu‚µ‚½");
+        Debug.Log($"ã‚»ãƒ¼ãƒ–ã—ãŸ");
     }
 }
 [Serializable]
