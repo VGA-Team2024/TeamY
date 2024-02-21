@@ -24,6 +24,12 @@ public class SaveManager : MonoBehaviour
     }
     [SerializeField]
     GameObject _shopPanel;
+    /// <summary>
+    /// スコアと
+    /// <para>Facilityの_name,_ownedNum,_currentPrice,_currentUpgradeFactorを、</para>
+    /// <para>UpGradeの_name,gameObjectを、</para>
+    /// ResourcesフォルダのSaveData.jsonに保存します。
+    /// </summary>
     public void Save()
     {
         Facility[] facilities = _shopPanel.GetComponentsInChildren<Facility>();
@@ -48,8 +54,6 @@ public class SaveManager : MonoBehaviour
             upgGadesData.Add(new UpGradeData()
             {
                 name = upgrade._name,
-                //親のgameobjectのactiveとって来てる、あとで変える
-                isOwned = !upgrade.GameObject().activeSelf,
                 gameObject = upgrade.gameObject,
             }) ;
         }
@@ -78,7 +82,6 @@ class FacilityData
 class UpGradeData
 {
     public string name;
-    public bool isOwned;
     public GameObject gameObject;
 }
 [Serializable]

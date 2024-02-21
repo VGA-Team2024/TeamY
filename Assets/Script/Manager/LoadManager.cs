@@ -29,6 +29,9 @@ public class LoadManager : MonoBehaviour
     }
     [SerializeField]
     GameObject _shopPanel;
+    /// <summary>
+    /// ResourcesフォルダのSaveData.jsonをSaveDataクラスに変換して、DataSetメソッドで各データに入れます
+    /// </summary>
     public void Load()
     {
         TextAsset jsonLoad = Resources.Load<TextAsset>("SaveData");
@@ -37,7 +40,14 @@ public class LoadManager : MonoBehaviour
         DataSet(savedata);
         Debug.Log($"ロードした");
     }
-
+    /// <summary>
+    /// ShopPanelのなかにあるFacilityには各パラメータを入れる
+    /// UpGradeはSaveDataにあって場になかったら生成、逆は破壊
+    /// </summary>
+    /// <param name="savedata">score
+    /// <para>facilitiesDataList[]{name,ownedNum,currentPrice,currentUpgradeFactor}</para>
+    /// upGradsDataList[]{name,isOwnedinstanceID}
+    /// </param>
     void DataSet(SaveData savedata)
     {
         ResourceManager.Instance.SetResource(savedata.score);
