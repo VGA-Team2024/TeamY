@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class Facility : MonoBehaviour
 {
     /// <summary>基本リソース生産量</summary>
@@ -35,17 +36,32 @@ public class Facility : MonoBehaviour
     /// <summary>アタッチ先のイメージ</summary>
     Image _image;
 
-    /// <summary>アタッチ先のテキスト</summary>
+    /// <summary>アイコンのイメージ</summary>
+    [SerializeField] Image _iconImage;
+
+    /// <summary>テキストのイメージ</summary>
+    [SerializeField] Image _textImage;
+
+    /// <summary>アタッチ先の価格テキスト</summary>
     [SerializeField] public TextMeshProUGUI _priceText;
+
+    /// <summary>アタッチ先の名前テキスト</summary>
+    [SerializeField] public TextMeshProUGUI _nameText;
 
     /// <summary>施設リストのテキスト</summary>
     [SerializeField] TextMeshProUGUI _facilityText;
+
+    /// <summary>施設リストのオブジェクト</summary>
+    [SerializeField] public GameObject _ownedFacility;
 
     /// <summary>施設の名前</summary>
     [SerializeField] public string _name;
 
     /// <summary>タイマー変数</summary>
     float _timer = 0;
+
+    /// <summary>桁表記用変数</summary>
+    string _PS;
 
     /// <summary>リソース管理クラスのインスタンス</summary>
     ResourceManager _resourceManager;
@@ -68,6 +84,12 @@ public class Facility : MonoBehaviour
 
         // クリック時のイベントを設定
         _button.onClick.AddListener(UpdatePrice);
+
+        // 所持施設リストを非表示にする。
+        _ownedFacility.SetActive(false);
+
+        // 最初は無効化
+        this.gameObject.SetActive(false);
     }
 
     void Update()
@@ -77,16 +99,25 @@ public class Facility : MonoBehaviour
         {
             _button.enabled = false;
             _image.color = new Color(1, 1, 1, 0.25f);
+            _priceText.color = new Color(0, 0, 0, 0.25f);
+            _nameText.color = new Color(0, 0, 0, 0.25f);
+            _iconImage.color = new Color(1, 1, 1, 0.25f); 
+            _textImage.color = new Color(1, 1, 1, 0.25f); 
         }
         else
         {
             _button.enabled = true;
             _image.color = new Color(1, 1, 1, 1);
+            _priceText.color = new Color(0, 0, 0, 1);
+            _nameText.color = new Color(0, 0, 0, 1);
+            _iconImage.color = new Color(1, 1, 1, 1);
+            _textImage.color = new Color(1, 1, 1, 1);
         }
-        // 1秒ごとにリソースを増加させる。
+
+        // 1秒ごとにリソースを増加させる
         _timer += Time.deltaTime;
 
-        if(_timer > 1)
+        if (_timer >= 1.0f)
         {
             _timer = 0;
             _resourceManager.AddResource(CalTotalCpS());
@@ -103,6 +134,10 @@ public class Facility : MonoBehaviour
     /// <summary>購入数を増加させるメソッド</summary>
     void AddOwnedNum()
     {
+        if(_ownedNum == 0 )
+        {
+            _ownedFacility.SetActive(true);
+        }
         _ownedNum++;
     }
 
@@ -136,8 +171,23 @@ public class Facility : MonoBehaviour
         // 購入金額を更新
         CalCurrentPrice();
 
-        // テキストを更新
-        _priceText.text = $"{_currentPrice} C";
+        // 施設リストのテキストを更新
         _facilityText.text = $"{_name}　×{_ownedNum}";
+
+        // ショップの値段テキストを更新
+        if(_currentPrice > 1000000000)
+        {
+            _PS = _currentPrice.ToString();
+            _priceText.text = $"10億{_PS[2]}{_PS[3]}{_PS[4]}{_PS[5]}万 C";
+        }
+        else if(_currentPrice > 1000000000000)
+        {
+            _PS = _currentPrice.ToString();
+            _priceText.text = $"1兆{_PS[1]}{_PS[2]}{_PS[3]}{_PS[4]}億 C";
+        }
+        else
+        {
+            _priceText.text = $"{_currentPrice} C";
+        }
     }
 }

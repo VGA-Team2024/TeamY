@@ -41,12 +41,14 @@ public class Refund : MonoBehaviour
             _button.enabled = false;
             _image.color = new Color(1, 1, 1, 0.25f);
             _childImage.color = new Color(1, 1, 1, 0.25f);
+            _facilityText.color = new Color(0, 0, 0, 0.25f);
         }
         else
         {
             _button.enabled = true;
             _image.color = new Color(1, 1, 1, 1);
             _childImage.color = new Color(1, 1, 1, 1);
+            _facilityText.color = new Color(0, 0, 0, 1);
         }
     }
 
