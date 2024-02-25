@@ -1,0 +1,24 @@
+{
+    "score": 1000,
+    "facilitiesDataList": [
+        {
+            "name": "カーソル",
+            "ownedNum": 0,
+            "isUpGraded": false
+        },
+        {
+            "name": "グランマ",
+            "ownedNum": 0,
+            "isUpGraded": false
+        }
+    ],
+    "upGradsDataList": [
+        {
+            "name": "カーソル収益2倍",
+            "isOwned": false,
+            "gameObject": {
+                "instanceID": 22478
+            }
+        }
+    ]
+}
