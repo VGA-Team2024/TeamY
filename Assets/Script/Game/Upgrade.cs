@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-public class UpGrade : MonoBehaviour
+public class Upgrade : MonoBehaviour
 {
     /// <summary>購入金額</summary>
     [SerializeField] ulong _price = 0;
@@ -9,11 +9,8 @@ public class UpGrade : MonoBehaviour
     /// <summary>アタッチ先のボタン</summary>
     Button _button;
 
-    /// <summary>アタッチ先のテキスト</summary>
-    [SerializeField] TextMeshProUGUI _shopText;
-
-    /// <summary>アイテムの名前</summary>
-    [SerializeField] string _name;
+    /// <summary>アタッチ先の価格テキスト</summary>
+    [SerializeField] TextMeshProUGUI _priceText;
 
     /// <summary>アップグレードする施設</summary>
     [SerializeField] Facility _facility;
@@ -24,29 +21,38 @@ public class UpGrade : MonoBehaviour
     /// <summary>リソース管理クラスのインスタンス</summary>
     ResourceManager _resourceManager;
 
+    /// <summary>変更元のイメージ</summary>
+    [SerializeField] Image _facilityImage;
+
+    /// <summary>変更先のイメージ</summary>
+    [SerializeField] Sprite _newSprite;
+
     void Start()
     {
         _resourceManager = ResourceManager.Instance;
         _button = gameObject.GetComponent<Button>();
-        // クリック時のイベントを設定
-        _button.onClick.AddListener(UpGradeFacility);
-    }
 
-    void Update()
-    {
         // テキストを更新
-        _shopText.text = $"{_name}　{_price}G";
+        _priceText.text = $"{_price} C";
+
+        // クリック時のイベントを設定
+        _button.onClick.AddListener(UpgradeFacility);
     }
 
-    void UpGradeFacility()
+    void UpgradeFacility()
     {
         // 施設をアップグレード
-        _facility._isUpGraded = true;
+        if(_facility)
+        _facility._currentUpgradeFactor *= 2;
 
         // クリッカーをアップグレード
-        _clicker._isUpGraded = true;
+        if(_clicker)
+        _clicker._currentUpgradeFactor *= 2;
 
-        // 現在の購入金額だけリソースを減少
+        // アイコンを更新
+        _facilityImage.sprite = _newSprite;
+
+        // 購入金額だけリソースを減少
         _resourceManager.SubtractResource(_price);
 
         // ボタンを消去
