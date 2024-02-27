@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Clicker : MonoBehaviour, IPointerClickHandler
 {
     /// <summary>基本リソース生産量</summary>
-    [SerializeField] float _baseCpS = 0;
+    [SerializeField] float _baseCPS = 0;
 
     /// <summary>リソース生産量</summary>
     float _cps = 0;
@@ -26,11 +24,20 @@ public class Clicker : MonoBehaviour, IPointerClickHandler
     {
         _resourceManager.AddResource(CalCpS());
     }
-
+    /// <summary>カーソルが上に来た時の処理</summary>
+    public void OnEnter()
+    {
+        this.gameObject.transform.localScale = new Vector3(5f, 5f, 5f);
+    }
+    /// <summary>カーソルが離れた時の処理</summary>
+    public void OnExit()
+    {
+        this.gameObject.transform.localScale = new Vector3(4f, 4f, 4f);
+    }
     /// <summary>RPSを計算するメソッド</summary>
     ulong CalCpS()
     {
-        _cps = _baseCpS * _currentUpgradeFactor;
+        _cps = _baseCPS * _currentUpgradeFactor;
         return (ulong)_cps;
     }
 
