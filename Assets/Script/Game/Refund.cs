@@ -8,13 +8,19 @@ public class Refund : MonoBehaviour
     Button _button;
 
     /// <summary>アタッチ先のイメージ</summary>
-    Image _image;
+    Image _buttonImage;
 
     /// <summary>施設リストのテキスト</summary>
-    [SerializeField] TextMeshProUGUI _facilityText;
+    [SerializeField] TextMeshProUGUI _nameText;
 
-    /// <summary>子オブジェクトのイメージ</summary>
-    [SerializeField] Image _childImage;
+    /// <summary>施設リストのテキスト</summary>
+    [SerializeField] TextMeshProUGUI _priceText;
+
+    /// <summary>アイコンのイメージ</summary>
+    [SerializeField] Image _iconImage;
+
+    /// <summary>テキストのイメージ</summary>
+    [SerializeField] Image _textImage;
 
     /// <summary>リソース管理クラスのインスタンス</summary>
     ResourceManager _resourceManager;
@@ -25,12 +31,15 @@ public class Refund : MonoBehaviour
     void Start()
     {
         _resourceManager = ResourceManager.Instance;
-        
         _button = gameObject.GetComponent<Button>();
-        _image = gameObject.GetComponent<Image>();
+        _buttonImage = gameObject.GetComponent<Image>();
 
         // クリック時のイベントを設定
         _button.onClick.AddListener(RefundUpdate);
+    }
+    private void OnEnable()
+    {
+        _priceText.text = $"×{_facility._ownedNum}";
     }
 
     private void Update()
@@ -38,17 +47,33 @@ public class Refund : MonoBehaviour
         // 施設の所持数が0の場合、払い戻しボタンを無効化する。
         if(_facility._ownedNum == 0)
         {
+            // ボタン
             _button.enabled = false;
-            _image.color = new Color(1, 1, 1, 0.25f);
-            _childImage.color = new Color(1, 1, 1, 0.25f);
-            _facilityText.color = new Color(0, 0, 0, 0.25f);
+            // ボタンイメージ
+            _buttonImage.color = new Color(1, 1, 1, 0.25f);
+            // 名前テキスト
+            _priceText.color = new Color(0, 0, 0, 0.25f);
+            // 価格テキスト
+            _nameText.color = new Color(0, 0, 0, 0.25f);
+            // アイコン
+            _iconImage.color = new Color(1, 1, 1, 0.25f);
+            // テキストイメージ
+            _textImage.color = new Color(1, 1, 1, 0.25f);
         }
         else
         {
+            // ボタン
             _button.enabled = true;
-            _image.color = new Color(1, 1, 1, 1);
-            _childImage.color = new Color(1, 1, 1, 1);
-            _facilityText.color = new Color(0, 0, 0, 1);
+            // ボタンイメージ
+            _buttonImage.color = new Color(1, 1, 1, 1);
+            // 名前テキスト
+            _priceText.color = new Color(0, 0, 0, 1);
+            // 価格テキスト
+            _nameText.color = new Color(0, 0, 0, 1);
+            // アイコン
+            _iconImage.color = new Color(1, 1, 1, 1);
+            // テキストイメージ
+            _textImage.color = new Color(1, 1, 1, 1);
         }
     }
 
@@ -68,7 +93,7 @@ public class Refund : MonoBehaviour
 
         // テキストを更新
         _facility._priceText.text = $"{_facility._currentPrice} C";
-        _facilityText.text = $"{_facility._name}　×{_facility._ownedNum}";
+        _priceText.text = $"×{_facility._ownedNum}";
 
         // 購入金額リストを更新
         _facility._priceList.RemoveAt(_facility._priceList.Count - 1);
