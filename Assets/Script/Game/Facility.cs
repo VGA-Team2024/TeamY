@@ -48,11 +48,11 @@ public class Facility : MonoBehaviour
     /// <summary>アタッチ先の名前テキスト</summary>
     [SerializeField] public TextMeshProUGUI _nameText;
 
-    /// <summary>施設リストのテキスト</summary>
-    [SerializeField] TextMeshProUGUI _facilityText;
-
     /// <summary>施設リストのオブジェクト</summary>
     [SerializeField] public GameObject _ownedFacility;
+
+    /// <summary>アタッチ先の名前テキスト</summary>
+    [SerializeField] public TextMeshProUGUI _ownedPriceText;
 
     /// <summary>施設の名前</summary>
     [SerializeField] public string _name;
@@ -80,7 +80,6 @@ public class Facility : MonoBehaviour
 
         // テキストを初期化
         _priceText.text = $"{_currentPrice} C";
-        _facilityText.text = $"{_name}　×{_ownedNum}";
 
         // クリック時のイベントを設定
         _button.onClick.AddListener(UpdatePrice);
@@ -89,7 +88,7 @@ public class Facility : MonoBehaviour
         _ownedFacility.SetActive(false);
 
         // 最初は無効化
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     void Update()
@@ -97,20 +96,32 @@ public class Facility : MonoBehaviour
         // リソース量が現在の購入金額に満たない場合、ボタンを半透明化する。
         if(_resourceManager.GetResource() < _currentPrice)
         {
+            // ボタン
             _button.enabled = false;
+            // ボタンイメージ
             _image.color = new Color(1, 1, 1, 0.25f);
+            // 名前テキスト
             _priceText.color = new Color(0, 0, 0, 0.25f);
+            // 価格テキスト
             _nameText.color = new Color(0, 0, 0, 0.25f);
+            // アイコン
             _iconImage.color = new Color(1, 1, 1, 0.25f); 
+            // テキストイメージ
             _textImage.color = new Color(1, 1, 1, 0.25f); 
         }
         else
         {
+            // ボタン
             _button.enabled = true;
+            // ボタンイメージ
             _image.color = new Color(1, 1, 1, 1);
+            // 名前テキスト
             _priceText.color = new Color(0, 0, 0, 1);
+            // 価格テキスト
             _nameText.color = new Color(0, 0, 0, 1);
+            // アイコン
             _iconImage.color = new Color(1, 1, 1, 1);
+            // テキストイメージ
             _textImage.color = new Color(1, 1, 1, 1);
         }
 
@@ -172,7 +183,7 @@ public class Facility : MonoBehaviour
         CalCurrentPrice();
 
         // 施設リストのテキストを更新
-        _facilityText.text = $"{_name}　×{_ownedNum}";
+        _ownedPriceText.text = $"×{_ownedNum}";
 
         // ショップの値段テキストを更新
         if(_currentPrice > 1000000000)
