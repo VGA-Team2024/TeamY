@@ -24,9 +24,14 @@ public class GameManager : MonoBehaviour
 
     /// <summary>リソース管理クラス</summary>
     ResourceManager _resourceManager = null;
+
+    EventManager _eventManager = null;
+
+    bool _isFirstGrandma = false;
     void Start()
     {
         _resourceManager = ResourceManager.Instance;
+        _eventManager = EventManager.Instance;
     }
     void Update()
     {
@@ -36,6 +41,8 @@ public class GameManager : MonoBehaviour
         SetText();
         // ショップを有効化
         Activate();
+        // ストーリー1をチェック
+        CheckFirstGrandmaBuy();
     }
 
     /// <summary>リソースを同期させるメソッド</summary>
@@ -82,6 +89,16 @@ public class GameManager : MonoBehaviour
             _isSwordEnabled = true;
             _sword.SetActive(true);
             _sword.GetComponent<Facility>()._ownedFacility.SetActive(true);
+        }
+    }
+    public void CheckFirstGrandmaBuy()
+    {
+        if (_isFirstGrandma) return;
+
+        if (_grandma.GetComponent<Facility>()._ownedNum == 1 && !_isFirstGrandma)
+        {
+            _isFirstGrandma = true;
+            _eventManager.EnableStoryButton(0);
         }
     }
 }
