@@ -31,8 +31,14 @@ public class AchievementManager : MonoBehaviour
     //ÀÑ‚Ìeimage
     [SerializeField, Header("ÀÑ")] GameObject _achieve;
     //‘Ò‚Á‚Ä—~‚µ‚¢ŠÔiÀÑ‚ªÁ‚¦‚é‚Ü‚Åj
-    public int timeOut = 2;
+    public int timeOut = 5;
 
+    public static AchievementManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         _achieve.SetActive(false);
