@@ -1,17 +1,13 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Device;
 using UnityEngine.UI;
-public class Upgrade : MonoBehaviour
+public class CursorUpgrade : MonoBehaviour
 {
     /// <summary>購入金額</summary>
     [SerializeField] ulong _price = 0;
 
     /// <summary>購入条件となる施設の数</summary>
-    [SerializeField] uint _specifiedNum = 0;
-
-    /// <summary>マネージャー呼び出し引数</summary>
-    [SerializeField] int _callActivationNum = 0;
+    [SerializeField] public uint _specifiedNum = 0;
 
     /// <summary>アタッチ先のボタン</summary>
     Button _button;
@@ -21,6 +17,9 @@ public class Upgrade : MonoBehaviour
 
     /// <summary>アップグレードする施設</summary>
     [SerializeField] Facility _facility;
+
+    /// <summary>アップグレードするクリッカー</summary>
+    [SerializeField] Clicker _clicker;
 
     /// <summary>リソース管理クラスのインスタンス</summary>
     ResourceManager _resourceManager;
@@ -36,6 +35,9 @@ public class Upgrade : MonoBehaviour
 
     /// <summary>変更先のイメージ</summary>
     [SerializeField] Sprite _newSprite;
+
+    /// <summary>変更先のカラー</summary>
+    [SerializeField] float _red, _green, _blue, _alpha;
 
     /// <summary>変更元のテキスト</summary>
     [SerializeField] TextMeshProUGUI _facilityText;
@@ -58,13 +60,16 @@ public class Upgrade : MonoBehaviour
         _upgradeManager = UpgradeManager.Instance;
         _button = gameObject.GetComponent<Button>();
 
-        // テキストを更新
-        _priceText.text = $"{_price} C";
-
         // クリック時のイベントを設定
         _button.onClick.AddListener(UpgradeFacility);
 
         gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        // テキストを更新
+        _priceText.text = $"{_price} C";
     }
 
     private void Update()
@@ -96,7 +101,7 @@ public class Upgrade : MonoBehaviour
             // 価格テキスト
             _thisNameText.color = new Color(0, 0, 0, 1);
             // アイコン
-            _thisIcon.color = new Color(1f, 1f, 1f, 1f);
+            _thisIcon.color = new Color(_red, _green, _blue, _alpha);
             // テキストイメージ
             _thisTextImage.color = new Color(1, 1, 1, 1);
         }
@@ -105,14 +110,20 @@ public class Upgrade : MonoBehaviour
     void UpgradeFacility()
     {
         // 施設をアップグレード
-        if(_facility)
-        _facility._currentUpgradeFactor *= 2;
+        if (_facility)
+            _facility._currentUpgradeFactor *= 2;
+
+        // クリッカーをアップグレード
+        if (_clicker)
+            _clicker._currentUpgradeFactor *= 5;
 
         // アイコンを更新
         _facilityImage.sprite = _newSprite;
+        _listImage.sprite = _newSprite;
 
         // テキストを更新
         _facilityText.text = _newText;
+        _listText.text = _newText;
 
         // 購入金額だけリソースを減少
         _resourceManager.SubtractResource(_price);

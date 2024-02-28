@@ -12,6 +12,7 @@ public class SwitchPanels : MonoBehaviour
     {
         // アップグレードパネルを無効化
         _upgradePanel.SetActive(false);
+        _facilityPanel.SetActive(true);
     }
 
     public void Switch()
