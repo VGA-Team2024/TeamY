@@ -159,7 +159,7 @@ MonoBehaviour:
   _priceText: {fileID: 652213956}
   _iconImage: {fileID: 1542856475}
   _textImage: {fileID: 1747978344}
-  _facility: {fileID: 1393088441}
+  _facility: {fileID: 1804614040}
 --- !u!114 &34001025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30AB\u30FC\u30BD\u30EB\u30A2\u30C3\u30D7\u30B0\u30EC\u30FC\u30C9"
+  m_text: "\u30B0\u30E9\u30F3\u30DE\u30A2\u30C3\u30D7\u30B0\u30EC\u30FC\u30C9"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e58702845f67ac14488209524f1a78dc, type: 2}
   m_sharedMaterial: {fileID: 6570613972938041532, guid: e58702845f67ac14488209524f1a78dc, type: 2}
@@ -767,7 +767,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30AB\u30FC\u30BD\u30EB\u30A2\u30C3\u30D7\u30B0\u30EC\u30FC\u30C9"
+  m_text: "\u30B0\u30E9\u30F3\u30DE\u30A2\u30C3\u30D7\u30B0\u30EC\u30FC\u30C9"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e58702845f67ac14488209524f1a78dc, type: 2}
   m_sharedMaterial: {fileID: 6570613972938041532, guid: e58702845f67ac14488209524f1a78dc, type: 2}
@@ -980,7 +980,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 62316540b29974c4a9e8deb0d9c273da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 256600ff3abd6ac41a2ab1fc22457d58, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1532,7 +1532,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30AB\u30FC\u30BD\u30EB"
+  m_text: "\u30C4\u30A4\u30F3\u30C0\u30AC\u30FC"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e58702845f67ac14488209524f1a78dc, type: 2}
   m_sharedMaterial: {fileID: 6570613972938041532, guid: e58702845f67ac14488209524f1a78dc, type: 2}
@@ -2152,7 +2152,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30AB\u30FC\u30BD\u30EB"
+  m_text: "\u305F\u3060\u306E\u6307\u8F2A"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e58702845f67ac14488209524f1a78dc, type: 2}
   m_sharedMaterial: {fileID: 6570613972938041532, guid: e58702845f67ac14488209524f1a78dc, type: 2}
@@ -2664,7 +2664,7 @@ MonoBehaviour:
   _facility: {fileID: 358339023}
   _facilityImage: {fileID: 1936418698}
   _listImage: {fileID: 1776711006}
-  _newSprite: {fileID: 21300000, guid: 62316540b29974c4a9e8deb0d9c273da, type: 3}
+  _newSprite: {fileID: 21300000, guid: 256600ff3abd6ac41a2ab1fc22457d58, type: 3}
   _facilityText: {fileID: 750718366}
   _listText: {fileID: 739611687}
   _newText: "\u30B0\u30E9\u30F3\u30DE???"
@@ -3426,7 +3426,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30AB\u30FC\u30BD\u30EB"
+  m_text: "\u30CF\u30F3\u30C9\u30AC\u30F3"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e58702845f67ac14488209524f1a78dc, type: 2}
   m_sharedMaterial: {fileID: 6570613972938041532, guid: e58702845f67ac14488209524f1a78dc, type: 2}
@@ -3561,7 +3561,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0a0b6dec727eb9b46ae49ef5790d3909, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e49a09b4e231f34428e27dc7054420e6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3639,7 +3639,7 @@ MonoBehaviour:
   _facility: {fileID: 358339023}
   _facilityImage: {fileID: 1936418698}
   _listImage: {fileID: 1776711006}
-  _newSprite: {fileID: 21300000, guid: 62316540b29974c4a9e8deb0d9c273da, type: 3}
+  _newSprite: {fileID: 21300000, guid: 2e2bd4f0de44f89478e4911cf34c95d3, type: 3}
   _facilityText: {fileID: 750718366}
   _listText: {fileID: 739611687}
   _newText: "\u6D0B\u83D3\u5B50\u306E\u9B54\u5973"
@@ -4778,7 +4778,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30AB\u30FC\u30BD\u30EB"
+  m_text: "\u30B0\u30E9\u30F3\u30DE"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e58702845f67ac14488209524f1a78dc, type: 2}
   m_sharedMaterial: {fileID: 6570613972938041532, guid: e58702845f67ac14488209524f1a78dc, type: 2}
@@ -5663,7 +5663,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 62316540b29974c4a9e8deb0d9c273da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea09d337c28a8bd48bd3a441a4d1974f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5739,7 +5739,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30AB\u30FC\u30BD\u30EB\u30A2\u30C3\u30D7\u30B0\u30EC\u30FC\u30C9"
+  m_text: "\u30B0\u30E9\u30F3\u30DE\u30A2\u30C3\u30D7\u30B0\u30EC\u30FC\u30C9"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e58702845f67ac14488209524f1a78dc, type: 2}
   m_sharedMaterial: {fileID: 6570613972938041532, guid: e58702845f67ac14488209524f1a78dc, type: 2}
@@ -5852,7 +5852,7 @@ MonoBehaviour:
   _priceText: {fileID: 1534184714}
   _iconImage: {fileID: 1844635094}
   _textImage: {fileID: 561610873}
-  _facility: {fileID: 1393088441}
+  _facility: {fileID: 1686090804}
 --- !u!114 &952004176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7214,12 +7214,17 @@ MonoBehaviour:
   - {fileID: 1795279911}
   - {fileID: 566534083}
   - {fileID: 143162421}
-  _grandmaUpgrade: []
+  _grandmaUpgrade:
+  - {fileID: 1459068348}
+  - {fileID: 1541317518}
+  - {fileID: 394601847}
+  - {fileID: 560583887}
+  - {fileID: 143162421}
   _gunUpgrade: []
   _ringUpgrade: []
   _swordUpgrade: []
   _cursorSNum: 010000000000000005000000000000000a00000000000000190000000000000032000000000000006400000000000000
-  _grandmaSNum: 
+  _grandmaSNum: 01000000000000000500000000000000190000000000000032000000000000006400000000000000
   _gunSNum: 
   _ringSNum: 
   _swordSNum: 
@@ -7683,7 +7688,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 62316540b29974c4a9e8deb0d9c273da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2e2bd4f0de44f89478e4911cf34c95d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7737,7 +7742,7 @@ MonoBehaviour:
   _priceText: {fileID: 1096613144}
   _iconImage: {fileID: 1776711006}
   _textImage: {fileID: 74113290}
-  _facility: {fileID: 1393088441}
+  _facility: {fileID: 358339023}
 --- !u!114 &1341427187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9024,7 +9029,7 @@ MonoBehaviour:
   _facility: {fileID: 358339023}
   _facilityImage: {fileID: 1936418698}
   _listImage: {fileID: 1776711006}
-  _newSprite: {fileID: 21300000, guid: 62316540b29974c4a9e8deb0d9c273da, type: 3}
+  _newSprite: {fileID: 21300000, guid: ea09d337c28a8bd48bd3a441a4d1974f, type: 3}
   _facilityText: {fileID: 750718366}
   _listText: {fileID: 739611687}
   _newText: "\u30B0\u30E9\u30F3\u30DE??"
@@ -9151,7 +9156,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0a0b6dec727eb9b46ae49ef5790d3909, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 88d1e98a91c96ca4d95451be993d2cc5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9382,7 +9387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30AB\u30FC\u30BD\u30EB\u30A2\u30C3\u30D7\u30B0\u30EC\u30FC\u30C9"
+  m_text: "\u30B0\u30E9\u30F3\u30DE\u30A2\u30C3\u30D7\u30B0\u30EC\u30FC\u30C9"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e58702845f67ac14488209524f1a78dc, type: 2}
   m_sharedMaterial: {fileID: 6570613972938041532, guid: e58702845f67ac14488209524f1a78dc, type: 2}
@@ -10773,7 +10778,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0a0b6dec727eb9b46ae49ef5790d3909, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb09c0d966b93504fb473fa79f84b274, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11704,7 +11709,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0a0b6dec727eb9b46ae49ef5790d3909, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 315cb710699c27c4297976f7b5782b98, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12542,7 +12547,7 @@ MonoBehaviour:
   _priceText: {fileID: 1069352098}
   _iconImage: {fileID: 553202932}
   _textImage: {fileID: 601622171}
-  _facility: {fileID: 1393088441}
+  _facility: {fileID: 1527176506}
 --- !u!114 &2000075852
 MonoBehaviour:
   m_ObjectHideFlags: 0

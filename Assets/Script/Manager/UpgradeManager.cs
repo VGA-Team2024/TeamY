@@ -44,8 +44,8 @@ public class UpgradeManager : MonoBehaviour
 
     private void Update()
     {
-        CheckCursor();
-        //CheckGrandma();
+        //CheckCursor();
+        CheckGrandma();
         //CheckGun();
         //CheckRing();
         //CheckSword();
@@ -53,16 +53,16 @@ public class UpgradeManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(_isCursorUGAllowed)
-        {
-            _isCursorUGAllowed = false;
-            ActivateCursorUG();
-        }
-        //if(_isGrandmaUGAllowed)
+        //if(_isCursorUGAllowed)
         //{
-        //    _isGrandmaUGAllowed = false;
-        //    ActivateGrandmaUG();
+        //    _isCursorUGAllowed = false;
+        //    ActivateCursorUG();
         //}
+        if (_isGrandmaUGAllowed)
+        {
+            _isGrandmaUGAllowed = false;
+            ActivateGrandmaUG();
+        }
         //if(_isGunUGAllowed)
         //{
         //    _isGunUGAllowed = false;
