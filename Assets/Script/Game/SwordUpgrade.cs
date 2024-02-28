@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Device;
 using UnityEngine.UI;
-public class GrandmaUpgrade : MonoBehaviour
+public class SwordUpgrade : MonoBehaviour
 {
     /// <summary>w“ü‹àŠz</summary>
     [SerializeField] ulong _price = 0;
@@ -113,12 +113,12 @@ public class GrandmaUpgrade : MonoBehaviour
         // w“ü‹àŠz‚¾‚¯ƒŠƒ\[ƒX‚ğŒ¸­
         _resourceManager.SubtractResource(_price);
 
-        if (_upgradeManager._grandmaUpgradeNum <= 3)
+        if (_upgradeManager._swordUpgradeNum <= 3)
         {
-            _upgradeManager._grandmaUpgradeNum++;
+            _upgradeManager._swordUpgradeNum++;
         }
 
-        _upgradeManager._isGrandmaUGAllowed = false;
+        _upgradeManager._isSwordUGAllowed = false;
 
         // ƒ{ƒ^ƒ“‚ğÁ‹
         Destroy(gameObject);

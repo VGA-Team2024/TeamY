@@ -7,9 +7,6 @@ public class GunUpgrade : MonoBehaviour
     /// <summary>購入金額</summary>
     [SerializeField] ulong _price = 0;
 
-    /// <summary>購入条件となる施設の数</summary>
-    [SerializeField] uint _specifiedNum = 0;
-
     /// <summary>アタッチ先のボタン</summary>
     Button _button;
 
@@ -116,7 +113,7 @@ public class GunUpgrade : MonoBehaviour
         // 購入金額だけリソースを減少
         _resourceManager.SubtractResource(_price);
 
-        if (_upgradeManager._gunUpgradeNum <= 4)
+        if (_upgradeManager._gunUpgradeNum <= 3)
         {
             _upgradeManager._gunUpgradeNum++;
         }

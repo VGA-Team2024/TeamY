@@ -44,40 +44,40 @@ public class UpgradeManager : MonoBehaviour
 
     private void Update()
     {
-        //CheckCursor();
+        CheckCursor();
         CheckGrandma();
-        //CheckGun();
-        //CheckRing();
-        //CheckSword();
+        CheckGun();
+        CheckRing();
+        CheckSword();
     }
 
     private void FixedUpdate()
     {
-        //if(_isCursorUGAllowed)
-        //{
-        //    _isCursorUGAllowed = false;
-        //    ActivateCursorUG();
-        //}
+        if (_isCursorUGAllowed)
+        {
+            _isCursorUGAllowed = false;
+            ActivateCursorUG();
+        }
         if (_isGrandmaUGAllowed)
         {
             _isGrandmaUGAllowed = false;
             ActivateGrandmaUG();
         }
-        //if(_isGunUGAllowed)
-        //{
-        //    _isGunUGAllowed = false;
-        //    ActivateGunUG();
-        //}
-        //if(_isRingUGAllowed)
-        //{
-        //    _isRingUGAllowed = false;
-        //    ActivateRingUG();
-        //}
-        //if(_isSwordUGAllowed)
-        //{
-        //    _isSwordUGAllowed = false;
-        //    ActivateSwordUG();
-        //}
+        if (_isGunUGAllowed)
+        {
+            _isGunUGAllowed = false;
+            ActivateGunUG();
+        }
+        if (_isRingUGAllowed)
+        {
+            _isRingUGAllowed = false;
+            ActivateRingUG();
+        }
+        if (_isSwordUGAllowed)
+        {
+            _isSwordUGAllowed = false;
+            ActivateSwordUG();
+        }
     }
     void Start()
     {
