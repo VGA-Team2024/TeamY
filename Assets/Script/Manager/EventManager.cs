@@ -13,6 +13,14 @@ public class EventManager : MonoBehaviour
     [Header("ストーリー進行ボタン")]
     [SerializeField] GameObject[] _storyButton;
 
+    /// <summary>実績</summary>
+    public bool _isAchievedBBAoodBye = false;
+    public bool _isAchevedApocalypse = false;
+
+    float _goldenCookieInterval = 0f;
+    float _timer = 0f;  
+    [SerializeField] GameObject _goldenCookie;
+
     private void Awake()
     {
         Instance = this;
@@ -20,12 +28,19 @@ public class EventManager : MonoBehaviour
 
     void Start()
     {
-        
+        CalGoldenCookieTime();
     }
 
     void Update()
     {
-        
+        _timer += Time.deltaTime;
+        if(_timer >= _goldenCookieInterval)
+        {
+            _timer = 0f;
+            _goldenCookie.SetActive(true);
+            _goldenCookie.transform.localPosition = new Vector2(CalGoldenCookiePosX(), CalGoldenCookiePosY());
+            CalGoldenCookieTime();
+        }
     }
 
     public void EnableStoryButton(int storyNum)
@@ -49,4 +64,27 @@ public class EventManager : MonoBehaviour
             UI.SetActive(true);
         }
     }
+
+    public void AchievedBBAGoodBye()
+    {
+        Debug.Log("BBA Good Bye");
+    }
+
+    void CalGoldenCookieTime()
+    {
+        float interval = Random.Range(3f, 9f);
+        _goldenCookieInterval = interval;
+    }
+
+    float CalGoldenCookiePosX()
+    {
+        return Random.Range(-750f, 750f);
+    }
+
+    float CalGoldenCookiePosY()
+    {
+        return Random.Range(-350f, 350f);
+    }
+
+
 }
