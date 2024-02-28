@@ -15,7 +15,8 @@ public class StoryController : MonoBehaviour
     [SerializeField] GameObject _choicePrefab;
     /// <summary>会話文を表示するUITextを入れる</summary>
     [SerializeField] TextMeshProUGUI _line;
-
+    // イベント
+    EventManager _eventManager;
 
     /// <summary>各選択肢が出現するか否かの配列</summary>
     public bool[] _flugs = new bool[3] { true, false, false };
@@ -23,6 +24,7 @@ public class StoryController : MonoBehaviour
     int _index = 0;
     void Start()
     {
+        _eventManager = EventManager.Instance;
         Conversation();
     }
     /// <summary>会話イベント。画面をクリックしたときに呼ばれる</summary>
@@ -52,6 +54,7 @@ public class StoryController : MonoBehaviour
     /// <summary>会話終了時に呼び出す</summary>
     public void StoryEnd()
     {
+        _eventManager.ActivateGameUI();
         Destroy(this.gameObject);//選択肢を選んだら自身を消す
     }
 }
