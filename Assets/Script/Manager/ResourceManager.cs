@@ -2,7 +2,7 @@ using UnityEngine;
 public class ResourceManager : MonoBehaviour
 {
     /// <summary>ゲームのリソース</summary>
-    private ulong _resource = 100000000000;
+    public ulong _resource = 100000000000;
 
     /// <summary>インスタンス</summary>
     public static ResourceManager Instance { get; private set; }

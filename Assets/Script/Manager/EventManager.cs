@@ -61,6 +61,10 @@ public class EventManager : MonoBehaviour
 
         CheckStory2();
         CheckAllStoryPlayed();
+        CheckStory1Choice();
+        CheckStory2Choice();
+        CheckStory3Choice();
+        CheckStory4Choice();
     }
 
     public void EnableStoryButton(int storyNum)
@@ -130,9 +134,37 @@ public class EventManager : MonoBehaviour
 
     void CheckStory1Choice()
     {
-        if(_isAchievedApocalypse)
+        if(_isAchievedApocalypse && _isAchievedRelife)
         {
+            _storyPrefabs[0].GetComponent<StoryController>()._flugs[1] = true;
+        }
+    }
 
+    void CheckStory2Choice()
+    {
+        if(_isAchievedRelife && _isPlayedStory2)
+        {
+            _storyPrefabs[1].GetComponent<StoryController>()._flugs[2] = true;
+        }
+    }
+
+    void CheckStory3Choice()
+    {
+        if(_isPlayedStory3)
+        {
+            _storyPrefabs[2].GetComponent<StoryController>()._flugs[1] = true;
+        }
+    }
+
+    void CheckStory4Choice()
+    {
+        if(_isPlayedStory4_1)
+        {
+            _storyPrefabs[3].GetComponent<StoryController>()._flugs[1] = true;
+        }
+        if(_isPlayedStory4_2)
+        {
+            _storyPrefabs[3].GetComponent<StoryController>()._flugs[2] = true;
         }
     }
 }
