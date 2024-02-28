@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class StoryController : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class StoryController : MonoBehaviour
     /// <summary>選択肢をまとめたGameObjectを入れる</summary>
     [SerializeField] GameObject _choicePrefab;
     /// <summary>会話文を表示するUITextを入れる</summary>
-    [SerializeField] Text _line;
+    [SerializeField] TextMeshProUGUI _line;
 
 
     /// <summary>各選択肢が出現するか否かの配列</summary>
@@ -43,7 +44,7 @@ public class StoryController : MonoBehaviour
         for(int i = 0;i < _choices.Length; i++)//選択肢の数だけ処理
         {
             var child = _choicePrefab.transform.GetChild(i);
-            Text text = child.GetChild(0).GetComponent<Text>();
+            TextMeshProUGUI text = child.GetChild(0).GetComponent<TextMeshProUGUI>();
             text.text = _choices[i];//ButtonのTextを変更
             child.gameObject.SetActive(_flugs[i]);//フラグがtrueになっている物だけ表示
         }
