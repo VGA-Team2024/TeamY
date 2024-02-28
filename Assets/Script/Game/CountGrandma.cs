@@ -35,7 +35,7 @@ public class CountGrandma : MonoBehaviour
         if(_grandmaCount == 100)
         {
             _achievementManager.Apocalypse();
-            _eventManager._isAchevedApocalypse = true;
+            _eventManager._isAchievedApocalypse = true;
         }
     }
 }

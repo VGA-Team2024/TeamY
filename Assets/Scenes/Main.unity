@@ -9174,7 +9174,7 @@ PrefabInstance:
     - target: {fileID: 1134111444504700838, guid: cd0133522e8dbf149ba8b7ef7e8d0cf3, type: 3}
       propertyPath: _choicePrefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 946454102}
     - target: {fileID: 1134111444504700838, guid: cd0133522e8dbf149ba8b7ef7e8d0cf3, type: 3}
       propertyPath: _lines.Array.size
       value: 1
@@ -10598,7 +10598,7 @@ PrefabInstance:
     - target: {fileID: 1134111444504700838, guid: cd0133522e8dbf149ba8b7ef7e8d0cf3, type: 3}
       propertyPath: _choicePrefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 977073352}
     - target: {fileID: 1134111444504700838, guid: cd0133522e8dbf149ba8b7ef7e8d0cf3, type: 3}
       propertyPath: _choices.Array.size
       value: 2
@@ -13338,7 +13338,7 @@ MonoBehaviour:
   _newSprite: {fileID: 21300000, guid: 8defe3d98f1ccd74c84593e45a909572, type: 3}
   _facilityText: {fileID: 596459946}
   _listText: {fileID: 192122508}
-  _newText: "\u30AF\u30C3\u30AD\u30FC\u810A\u9AC4\u5263"
+  _newText: "\u7D42\u7109\u30F2\u547C\u30D6\u5BFE\u5263"
   _thisNameText: {fileID: 247469232}
   _thisIcon: {fileID: 1733809974}
   _thisTextImage: {fileID: 377188449}
@@ -15795,7 +15795,6 @@ GameObject:
   - component: {fileID: 1469721229}
   - component: {fileID: 1469721228}
   - component: {fileID: 1469721227}
-  - component: {fileID: 1469721230}
   m_Layer: 5
   m_Name: 'Story2 Button '
   m_TagString: Untagged
@@ -15880,14 +15879,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1469721230}
-        m_TargetAssemblyTypeName: Destroy, Assembly-CSharp
-        m_MethodName: DestroySelf
-        m_Mode: 1
+      - m_Target: {fileID: 1469721225}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -15930,18 +15929,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1469721225}
   m_CullTransparentMesh: 1
---- !u!114 &1469721230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1469721225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0851498d5c5cc61479c5a10158c85f3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1471918037
 GameObject:
   m_ObjectHideFlags: 0
@@ -17897,7 +17884,6 @@ GameObject:
   - component: {fileID: 1559087340}
   - component: {fileID: 1559087339}
   - component: {fileID: 1559087338}
-  - component: {fileID: 1559087341}
   m_Layer: 5
   m_Name: Story1 Button
   m_TagString: Untagged
@@ -17982,10 +17968,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1559087341}
-        m_TargetAssemblyTypeName: Destroy, Assembly-CSharp
-        m_MethodName: DestroySelf
-        m_Mode: 1
+      - m_Target: {fileID: 1559087336}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18032,18 +18018,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559087336}
   m_CullTransparentMesh: 1
---- !u!114 &1559087341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1559087336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0851498d5c5cc61479c5a10158c85f3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1574054904 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1134111444538180655, guid: cd0133522e8dbf149ba8b7ef7e8d0cf3, type: 3}
@@ -18285,7 +18259,6 @@ GameObject:
   - component: {fileID: 1579872894}
   - component: {fileID: 1579872893}
   - component: {fileID: 1579872892}
-  - component: {fileID: 1579872895}
   m_Layer: 5
   m_Name: Story4 Button
   m_TagString: Untagged
@@ -18370,14 +18343,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1579872895}
-        m_TargetAssemblyTypeName: Destroy, Assembly-CSharp
-        m_MethodName: DestroySelf
-        m_Mode: 1
+      - m_Target: {fileID: 1579872890}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -18420,18 +18393,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579872890}
   m_CullTransparentMesh: 1
---- !u!114 &1579872895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579872890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0851498d5c5cc61479c5a10158c85f3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1582947251
 GameObject:
   m_ObjectHideFlags: 0
@@ -24235,7 +24196,11 @@ MonoBehaviour:
   - {fileID: 2130494634}
   - {fileID: 1579872890}
   _isAchievedBBAoodBye: 0
-  _isAchevedApocalypse: 0
+  _isAchievedApocalypse: 0
+  _isAchievedLucky: 0
+  _isObtainAllGrandmaUpgrade: 0
+  _isObtainAllRingUpgrade: 0
+  _isPlayedStory2: 0
   _goldenCookie: {fileID: 131859588}
 --- !u!1 &1975288614
 GameObject:
@@ -24452,7 +24417,7 @@ MonoBehaviour:
   _newSprite: {fileID: 21300000, guid: e077eeb85edbf744996fbe855456f51f, type: 3}
   _facilityText: {fileID: 227955938}
   _listText: {fileID: 301611972}
-  _newText: "\u5927\u7A7A\u306E\u30DC\u30F3\u30B4\u30EC\u30EA\u30F3\u30B0"
+  _newText: "\u6642\u7A7A\u306E\u30DC\u30F3\u30B4\u30EC\u30EA\u30F3\u30B0"
   _thisNameText: {fileID: 1065822828}
   _thisIcon: {fileID: 1109679408}
   _thisTextImage: {fileID: 1598464704}
@@ -26205,7 +26170,6 @@ GameObject:
   - component: {fileID: 2130494638}
   - component: {fileID: 2130494637}
   - component: {fileID: 2130494636}
-  - component: {fileID: 2130494639}
   m_Layer: 5
   m_Name: Story3 Button
   m_TagString: Untagged
@@ -26290,14 +26254,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2130494639}
-        m_TargetAssemblyTypeName: Destroy, Assembly-CSharp
-        m_MethodName: DestroySelf
-        m_Mode: 1
+      - m_Target: {fileID: 2130494634}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -26340,15 +26304,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130494634}
   m_CullTransparentMesh: 1
---- !u!114 &2130494639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2130494634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0851498d5c5cc61479c5a10158c85f3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

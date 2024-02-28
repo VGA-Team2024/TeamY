@@ -15,7 +15,14 @@ public class EventManager : MonoBehaviour
 
     /// <summary>実績</summary>
     public bool _isAchievedBBAoodBye = false;
-    public bool _isAchevedApocalypse = false;
+    public bool _isAchievedApocalypse = false;
+    public bool _isAchievedLucky = false;
+    public bool _isObtainAllGrandmaUpgrade = false;
+    public bool _isObtainAllRingUpgrade = false;
+    public bool _isObtainAllSwordUpgrade = false;
+
+    /// <summary>ストーリー</summary>
+    public bool _isPlayedStory2 = false;
 
     float _goldenCookieInterval = 0f;
     float _timer = 0f;  
@@ -41,10 +48,16 @@ public class EventManager : MonoBehaviour
             _goldenCookie.transform.localPosition = new Vector2(CalGoldenCookiePosX(), CalGoldenCookiePosY());
             CalGoldenCookieTime();
         }
+
+        CheckStory2();
     }
 
     public void EnableStoryButton(int storyNum)
     {
+        for(int i = storyNum - 1; i >= 0; i--)
+        {
+            _storyButton[i].SetActive(false);
+        }
         _storyButton[storyNum].SetActive(true);
     }
 
@@ -72,7 +85,7 @@ public class EventManager : MonoBehaviour
 
     void CalGoldenCookieTime()
     {
-        float interval = Random.Range(3f, 9f);
+        float interval = Random.Range(300f, 900f);
         _goldenCookieInterval = interval;
     }
 
@@ -85,6 +98,13 @@ public class EventManager : MonoBehaviour
     {
         return Random.Range(-350f, 350f);
     }
-
-
+    
+    void CheckStory2()
+    {
+        if(_isObtainAllGrandmaUpgrade && _isAchievedApocalypse && _isAchievedBBAoodBye && !_isPlayedStory2)
+        {
+            _isPlayedStory2 = true;
+            EnableStoryButton(1);
+        }
+    }
 }

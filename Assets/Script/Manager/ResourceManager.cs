@@ -6,6 +6,9 @@ public class ResourceManager : MonoBehaviour
 
     /// <summary>インスタンス</summary>
     public static ResourceManager Instance { get; private set; }
+
+    public bool _isFever = false;
+    float _timer = 0f;
     private void Awake()
     {
         // ResourceManagerが存在しない場合
@@ -18,6 +21,21 @@ public class ResourceManager : MonoBehaviour
         {
             Debug.LogError("ResourceManagerは既に存在しています");
             Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        if (_isFever)
+        {
+
+            _timer += Time.deltaTime;
+
+            if( _timer >= 77f )
+            {
+                _timer = 0f;
+                _isFever = false;
+            }
         }
     }
 
@@ -38,7 +56,11 @@ public class ResourceManager : MonoBehaviour
     /// <param name="value">増加量</param>
     public void AddResource(ulong value)
     {
-        SetResource(GetResource() + value);
+        if(_isFever)
+        {
+            SetResource(GetResource() + value * 7);
+        }
+        else SetResource(GetResource() + value);
     }
 
     /// <summary>リソースを減少させるメソッド</summary>
