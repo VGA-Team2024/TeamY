@@ -121,6 +121,6 @@ public class SwordUpgrade : MonoBehaviour
         _upgradeManager._isSwordUGAllowed = false;
 
         // ƒ{ƒ^ƒ“‚ğÁ‹
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

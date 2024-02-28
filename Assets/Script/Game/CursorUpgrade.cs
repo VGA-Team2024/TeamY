@@ -130,6 +130,6 @@ public class CursorUpgrade : MonoBehaviour
         _upgradeManager._isCursorUGAllowed = false;
 
         // ƒ{ƒ^ƒ“‚ğÁ‹
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

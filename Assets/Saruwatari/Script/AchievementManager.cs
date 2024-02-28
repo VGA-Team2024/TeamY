@@ -34,6 +34,7 @@ public class AchievementManager : MonoBehaviour
     public int timeOut = 5;
 
     public static AchievementManager Instance { get; private set; }
+    EventManager _eventManager = null;
 
     private void Awake()
     {
@@ -42,6 +43,7 @@ public class AchievementManager : MonoBehaviour
     private void Start()
     {
         _achieve.SetActive(false);
+        _eventManager = EventManager.Instance;
     }
 
     //アポカリプス
@@ -79,6 +81,7 @@ public class AchievementManager : MonoBehaviour
     //世界崩壊
     public void WorldCollapse()
     {
+        _eventManager._isPlayedStory4_1 = true;
         _achieve.SetActive(true);
         _icon.sprite = _achieveIcon[4];
         _name.text = _achieveName[4];
@@ -87,6 +90,7 @@ public class AchievementManager : MonoBehaviour
     //無限ループ
     public void InfiniteLoop()
     {
+        _eventManager._isPlayedStory4_2 = true;
         _achieve.SetActive(true);
         _icon.sprite = _achieveIcon[5];
         _name.text = _achieveName[5];
@@ -95,6 +99,7 @@ public class AchievementManager : MonoBehaviour
     //すべてを知るもの
     public void KnowsEverything()
     {
+        _eventManager._isPlayedStory4_3 = true;
         _achieve.SetActive(true);
         _icon.sprite = _achieveIcon[6];
         _name.text = _achieveName[6];

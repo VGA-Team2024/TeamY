@@ -121,6 +121,6 @@ public class GunUpgrade : MonoBehaviour
         _upgradeManager._isGunUGAllowed = false;
 
         // ƒ{ƒ^ƒ“‚ğÁ‹
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

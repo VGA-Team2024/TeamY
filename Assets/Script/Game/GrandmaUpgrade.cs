@@ -121,6 +121,6 @@ public class GrandmaUpgrade : MonoBehaviour
         _upgradeManager._isGrandmaUGAllowed = false;
 
         // ƒ{ƒ^ƒ“‚ğÁ‹
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
