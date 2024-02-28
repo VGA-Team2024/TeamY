@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class Achievements : MonoBehaviour
+public class AchievementManager : MonoBehaviour
 {
     //[Header("アポカリプス")]public bool IsApocalypse;
     //[Header("ババアグッバイ")] public bool IsBabaAgbye;
@@ -36,18 +36,6 @@ public class Achievements : MonoBehaviour
     private void Start()
     {
         _achieve.SetActive(false);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Apocalypse();
-        }
-        else if (Input.GetKeyDown(KeyCode.Z))
-        {
-            BabaAgbye();
-        }
     }
 
     //アポカリプス
@@ -121,7 +109,6 @@ public class Achievements : MonoBehaviour
         yield return new WaitForSeconds(timeOut);
 
         _achieve.SetActive(false);
-
     }
 
 
