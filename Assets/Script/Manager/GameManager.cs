@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
     public int _heavenlyCookie = 0;
 
     [SerializeField] Facility[] _facilities = null;
+
+    [SerializeField] GameObject _relifeButton;
     private void Awake()
     {
         Instance = this;
@@ -122,6 +124,11 @@ public class GameManager : MonoBehaviour
         _heavenlyCookie += hc;
     }
 
+    public void SubtractCookie(int c)
+    {
+        _resourceManager.SubtractResource((ulong)c);
+    }
+
     public void ReLife()
     {
         if(_resourceManager.GetResource() >= 100000000)
@@ -150,5 +157,7 @@ public class GameManager : MonoBehaviour
             facility._priceList.Clear();
             facility._priceText.text = $"{facility._currentPrice} C";
         }
+
+        _relifeButton.SetActive(false);
     }
 }
