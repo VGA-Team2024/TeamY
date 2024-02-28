@@ -6,9 +6,6 @@ public class CursorUpgrade : MonoBehaviour
     /// <summary>購入金額</summary>
     [SerializeField] ulong _price = 0;
 
-    /// <summary>購入条件となる施設の数</summary>
-    [SerializeField] public uint _specifiedNum = 0;
-
     /// <summary>アタッチ先のボタン</summary>
     Button _button;
 
@@ -60,16 +57,13 @@ public class CursorUpgrade : MonoBehaviour
         _upgradeManager = UpgradeManager.Instance;
         _button = gameObject.GetComponent<Button>();
 
+        // テキストを更新
+        _priceText.text = $"{_price} C";
+
         // クリック時のイベントを設定
         _button.onClick.AddListener(UpgradeFacility);
 
         gameObject.SetActive(false);
-    }
-
-    private void OnEnable()
-    {
-        // テキストを更新
-        _priceText.text = $"{_price} C";
     }
 
     private void Update()
