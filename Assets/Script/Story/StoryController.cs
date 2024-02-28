@@ -55,6 +55,7 @@ public class StoryController : MonoBehaviour
     public void StoryEnd()
     {
         _eventManager.ActivateGameUI();
-        Destroy(this.gameObject);//選択肢を選んだら自身を消す
+        //Destroy(this.gameObject);//選択肢を選んだら自身を消す
+        gameObject.SetActive(false);
     }
 }

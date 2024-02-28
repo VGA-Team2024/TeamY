@@ -121,6 +121,6 @@ public class RingUpgrade : MonoBehaviour
         _upgradeManager._isRingUGAllowed = false;
 
         // ƒ{ƒ^ƒ“‚ğÁ‹
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

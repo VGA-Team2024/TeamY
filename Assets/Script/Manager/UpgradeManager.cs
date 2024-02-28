@@ -40,6 +40,8 @@ public class UpgradeManager : MonoBehaviour
 
     EventManager _eventManager = null;
 
+    [SerializeField] GameObject _relifeButton;
+
     private void Awake()
     {
         Instance = this;
@@ -184,8 +186,10 @@ public class UpgradeManager : MonoBehaviour
     {
         if(_ringUpgradeNum == 4 && _eventManager._isObtainAllRingUpgrade == false)
         {
+            _eventManager._isPlayedStory3 = true;
             _eventManager._isObtainAllRingUpgrade = true;
             _eventManager.EnableStoryButton(2);
+            _relifeButton.SetActive(true);
         }
     }
 

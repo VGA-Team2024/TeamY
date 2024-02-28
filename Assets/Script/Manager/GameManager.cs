@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; set; }
     /// <summary>リソースを表示するテキスト</summary>
     [SerializeField] TextMeshProUGUI _resourceText;
 
@@ -26,12 +27,25 @@ public class GameManager : MonoBehaviour
     ResourceManager _resourceManager = null;
 
     EventManager _eventManager = null;
+    AchievementManager _achievementManager = null;
+    UpgradeManager _upgradeManager = null;
 
     bool _isFirstGrandma = false;
+
+    // 転生アイテム
+    public int _heavenlyCookie = 0;
+
+    [SerializeField] Facility[] _facilities = null;
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
+        _achievementManager = AchievementManager.Instance;
         _resourceManager = ResourceManager.Instance;
         _eventManager = EventManager.Instance;
+        _upgradeManager = UpgradeManager.Instance;
     }
     void Update()
     {
@@ -98,7 +112,43 @@ public class GameManager : MonoBehaviour
         if (_grandma.GetComponent<Facility>()._ownedNum == 1 && !_isFirstGrandma)
         {
             _isFirstGrandma = true;
+            _eventManager._isPlayedStory1 = true;
             _eventManager.EnableStoryButton(0);
+        }
+    }
+
+    public void AddHC(int hc)
+    {
+        _heavenlyCookie += hc;
+    }
+
+    public void ReLife()
+    {
+        if(_resourceManager.GetResource() >= 100000000)
+        {
+            _heavenlyCookie++;
+        }
+        _achievementManager.ReincarnatedPerson();
+        _eventManager._isAchievedRelife = true;
+
+        _resourceManager.SetResource(0);
+
+        _upgradeManager._cursorUpgradeNum = 0;
+        _upgradeManager._grandmaUpgradeNum = 0;
+        _upgradeManager._gunUpgradeNum = 0;
+        _upgradeManager._ringUpgradeNum = 0;
+        _upgradeManager._swordUpgradeNum = 0;
+
+        foreach(var facility in _facilities)
+        {
+            facility._ownedNum = 0;
+            facility._currentPrice = facility._basePrice;
+            facility._currentMultiplier = facility._baseMultiplier;
+            facility._currentUpgradeFactor = 1;
+            facility._ownedNum = 0;
+            facility._ownedPriceText.text = "×0";
+            facility._priceList.Clear();
+            facility._priceText.text = $"{facility._currentPrice} C";
         }
     }
 }
