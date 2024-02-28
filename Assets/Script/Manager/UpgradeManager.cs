@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
@@ -37,6 +38,8 @@ public class UpgradeManager : MonoBehaviour
 
     public static UpgradeManager Instance { get; set; }
 
+    EventManager _eventManager = null;
+
     private void Awake()
     {
         Instance = this;
@@ -49,6 +52,10 @@ public class UpgradeManager : MonoBehaviour
         CheckGun();
         CheckRing();
         CheckSword();
+
+        CheckGrandmaUpgrade();
+        CheckRingUpgrade();
+        CheckSwordUpgrade();
     }
 
     private void FixedUpdate()
@@ -82,6 +89,7 @@ public class UpgradeManager : MonoBehaviour
     void Start()
     {
         _resourceManager = ResourceManager.Instance;
+        _eventManager = EventManager.Instance;
     }
 
     public void ActivateCursorUG()
@@ -161,6 +169,32 @@ public class UpgradeManager : MonoBehaviour
         if (_facilities[4]._ownedNum >= _swordSNum[_swordUpgradeNum])
         {
             _isSwordUGAllowed = true;
+        }
+    }
+
+    void CheckGrandmaUpgrade()
+    {
+        if(_grandmaUpgradeNum == 4 && _eventManager._isObtainAllGrandmaUpgrade == false)
+        {
+            _eventManager._isObtainAllGrandmaUpgrade = true;
+        }
+    }
+
+    void CheckRingUpgrade()
+    {
+        if(_ringUpgradeNum == 4 && _eventManager._isObtainAllRingUpgrade == false)
+        {
+            _eventManager._isObtainAllRingUpgrade = true;
+            _eventManager.EnableStoryButton(2);
+        }
+    }
+
+    void CheckSwordUpgrade()
+    {
+        if(_swordUpgradeNum == 4 && _eventManager._isObtainAllSwordUpgrade == false)
+        {
+            _eventManager._isObtainAllSwordUpgrade = true;
+            _eventManager.EnableStoryButton(3);
         }
     }
 }
