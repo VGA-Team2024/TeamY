@@ -48,7 +48,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>その他のSEを再生するメソッド。各ボタンから呼び出される。</summary>
-    /// <param name="soundNum">AudioClip配列のインデックス。 0 = クリッカー（クリック）, 1 = クリッカー（マウスオーバー）, 2 = パネル切り替え, 3 = ストーリー進行, 4 = 転生, 5 = 実績</param>
+    /// <param name="soundNum">AudioClip配列のインデックス。 0 = クリッカー（クリック）, 1 = クリッカー（マウスオーバー）, 2 = パネル切り替え, 3 = ストーリー進行, 4 = 転生, 5 = 実績, 6 = 払い戻し, 7 = ストーリー選択肢</param>
     public void PlayOtherSound(int soundNum)
     {
         _audioSource.PlayOneShot(_otherSound[soundNum]);
