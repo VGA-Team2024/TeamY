@@ -2,7 +2,7 @@ using UnityEngine;
 public class ResourceManager : MonoBehaviour
 {
     /// <summary>ゲームのリソース</summary>
-    public ulong _resource = 100000000000;
+    public ulong _resource = 15;
 
     /// <summary>インスタンス</summary>
     public static ResourceManager Instance { get; private set; }
@@ -22,6 +22,11 @@ public class ResourceManager : MonoBehaviour
             Debug.LogError("ResourceManagerは既に存在しています");
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        SetResource(15);
     }
 
     private void Update()
