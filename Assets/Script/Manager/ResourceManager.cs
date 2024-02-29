@@ -26,7 +26,7 @@ public class ResourceManager : MonoBehaviour
 
     private void Start()
     {
-        SetResource(15);
+        SetResource(_resource);
     }
 
     private void Update()
