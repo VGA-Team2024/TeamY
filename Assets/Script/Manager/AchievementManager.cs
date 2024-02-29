@@ -34,7 +34,12 @@ public class AchievementManager : MonoBehaviour
     public int timeOut = 5;
 
     public static AchievementManager Instance { get; private set; }
+
+    /// <summary>イベント管理クラス</summary>
     EventManager _eventManager = null;
+
+    /// <summary>サウンド管理クラス</summary>
+    SoundManager _soundManager = null;
 
     private void Awake()
     {
@@ -42,8 +47,11 @@ public class AchievementManager : MonoBehaviour
     }
     private void Start()
     {
+        // 実績ダイアログを非表示に設定
         _achieve.SetActive(false);
+        // 各クラスのインスタンスを取得
         _eventManager = EventManager.Instance;
+        _soundManager = SoundManager.Instance;
     }
 
     //アポカリプス
@@ -52,6 +60,7 @@ public class AchievementManager : MonoBehaviour
         _achieve.SetActive(true);
         _icon.sprite = _achieveIcon[0];
         _name.text = _achieveName[0];
+        _soundManager.PlayOtherSound(5);
         StartCoroutine(Hide());
     }
     //ババアグッバイ
@@ -60,6 +69,7 @@ public class AchievementManager : MonoBehaviour
         _achieve.SetActive(true);
         _icon.sprite = _achieveIcon[1];
         _name.text = _achieveName[1];
+        _soundManager.PlayOtherSound(5);
         StartCoroutine(Hide());
     }
     //ラッキー
@@ -68,6 +78,7 @@ public class AchievementManager : MonoBehaviour
         _achieve.SetActive(true);
         _icon.sprite = _achieveIcon[2];
         _name.text = _achieveName[2];
+        _soundManager.PlayOtherSound(5);
         StartCoroutine(Hide());
     }
     //転生者
@@ -76,6 +87,7 @@ public class AchievementManager : MonoBehaviour
         _achieve.SetActive(true);
         _icon.sprite = _achieveIcon[3];
         _name.text = _achieveName[3];
+        _soundManager.PlayOtherSound(5);
         StartCoroutine(Hide());
     }
     //世界崩壊
@@ -85,6 +97,7 @@ public class AchievementManager : MonoBehaviour
         _achieve.SetActive(true);
         _icon.sprite = _achieveIcon[4];
         _name.text = _achieveName[4];
+        _soundManager.PlayOtherSound(5);
         StartCoroutine(Hide());
     }
     //無限ループ
@@ -94,6 +107,7 @@ public class AchievementManager : MonoBehaviour
         _achieve.SetActive(true);
         _icon.sprite = _achieveIcon[5];
         _name.text = _achieveName[5];
+        _soundManager.PlayOtherSound(5);
         StartCoroutine(Hide());
     }
     //すべてを知るもの
@@ -103,6 +117,7 @@ public class AchievementManager : MonoBehaviour
         _achieve.SetActive(true);
         _icon.sprite = _achieveIcon[6];
         _name.text = _achieveName[6];
+        _soundManager.PlayOtherSound(5);
         StartCoroutine(Hide());
     }
     //全クリ
@@ -111,6 +126,7 @@ public class AchievementManager : MonoBehaviour
         _achieve.SetActive(true);
         _icon.sprite = _achieveIcon[7];
         _name.text = _achieveName[7];
+        _soundManager.PlayOtherSound(5);
         StartCoroutine(Hide());
     }
 
