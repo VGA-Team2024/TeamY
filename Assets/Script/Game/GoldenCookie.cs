@@ -5,13 +5,13 @@ using UnityEngine.EventSystems;
 
 public class GoldenCookie : MonoBehaviour, IPointerClickHandler
 {
-    ResourceManager _resourceManager = null;
+    GameManager _gameManager = null;
     EventManager _eventManager = null;
     AchievementManager _achievementManager = null;
 
     private void Start()
     {
-        _resourceManager = ResourceManager.Instance;
+        _gameManager = GameManager.Instance;
         _eventManager = EventManager.Instance;
         _achievementManager = AchievementManager.Instance;
         DestroySelf();
@@ -29,7 +29,7 @@ public class GoldenCookie : MonoBehaviour, IPointerClickHandler
             _eventManager._isAchievedLucky = true;
             _achievementManager.Lucky();
         }
-        _resourceManager._isFever = true;
+        //_gameManager._isFever = true;
         gameObject.SetActive(false);
     }
     public void OnPointerClick(PointerEventData eventData)

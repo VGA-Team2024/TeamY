@@ -23,14 +23,14 @@ public class Refund : MonoBehaviour
     [SerializeField] Image _textImage;
 
     /// <summary>リソース管理クラスのインスタンス</summary>
-    ResourceManager _resourceManager;
+    GameManager _gameManager;
 
     /// <summary>売却する施設</summary>
     [SerializeField] Facility _facility;
 
     void Start()
     {
-        _resourceManager = ResourceManager.Instance;
+        _gameManager = GameManager.Instance;
         _button = gameObject.GetComponent<Button>();
         _buttonImage = gameObject.GetComponent<Image>();
 
@@ -80,7 +80,7 @@ public class Refund : MonoBehaviour
     void RefundUpdate()
     {
         // 購入金額の3分の2を払戻す
-        _resourceManager.AddResource(CalRefundPrice());
+        _gameManager.AddResource(CalRefundPrice());
 
         // 購入数を更新
         _facility._ownedNum -= 1;

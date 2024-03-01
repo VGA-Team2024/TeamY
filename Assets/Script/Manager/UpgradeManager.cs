@@ -4,7 +4,7 @@ using UnityEngine;
 public class UpgradeManager : MonoBehaviour
 {
     /// <summary>リソース管理クラス</summary>
-    ResourceManager _resourceManager = null;
+    GameManager _gameManager = null;
 
     /// <summary>アップグレード一覧</summary>
     [SerializeField] GameObject[] _cursorUpgrade;
@@ -90,7 +90,7 @@ public class UpgradeManager : MonoBehaviour
     }
     void Start()
     {
-        _resourceManager = ResourceManager.Instance;
+        _gameManager = GameManager.Instance;
         _eventManager = EventManager.Instance;
     }
 

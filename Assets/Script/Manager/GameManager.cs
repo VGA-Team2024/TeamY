@@ -1,8 +1,12 @@
 using TMPro;
 using UnityEngine;
+
+/// <summary>ゲーム全体を管理するクラス</summary>
 public class GameManager : MonoBehaviour
 {
+    /// <summary>インスタンス</summary>
     public static GameManager Instance { get; set; }
+
     /// <summary>リソースを表示するテキスト</summary>
     [SerializeField] TextMeshProUGUI _resourceText;
 
@@ -20,20 +24,20 @@ public class GameManager : MonoBehaviour
     bool _isRingEnabled = false;
     bool _isSwordEnabled = false;
 
-    /// <summary>リソース</summary>
-    private ulong _currentResource = 0;
+    /// <summary>現在のリソース量</summary>
+    private ulong _resource = 10000000000;
 
-    /// <summary>リソース管理クラス</summary>
-    ResourceManager _resourceManager = null;
-
+    /// <summary>イベント管理クラス</summary>
     EventManager _eventManager = null;
+    /// <summary>実績管理クラス</summary>
     AchievementManager _achievementManager = null;
+    /// <summary>アップグレード管理クラス</summary>
     UpgradeManager _upgradeManager = null;
 
     bool _isFirstGrandma = false;
 
-    // 転生アイテム
-    public int _heavenlyCookie = 0;
+    /// <summary>転生アイテム量</summary>
+    public int _currentHC = 0;
 
     [SerializeField] Facility[] _facilities = null;
 
@@ -45,62 +49,86 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _achievementManager = AchievementManager.Instance;
-        _resourceManager = ResourceManager.Instance;
         _eventManager = EventManager.Instance;
         _upgradeManager = UpgradeManager.Instance;
     }
     void Update()
     {
-        // リソースを同期
-        SynchronizeResource();
-        // テキストを更新
-        SetText();
         // ショップを有効化
         Activate();
         // ストーリー1をチェック
         CheckFirstGrandmaBuy();
     }
 
-    /// <summary>リソースを同期させるメソッド</summary>
-    void SynchronizeResource()
+    /// <summary>リソースを取得する</summary>
+    public ulong GetResource()
     {
-        _currentResource = _resourceManager.GetResource();
+        return _resource;
     }
 
-    /// <summary>テキストを設定するメソッド</summary>
-    void SetText()
+    /// <summary>リソースを設定するメソッド</summary>
+    /// <param name="value">設定後のリソース量</param>
+    public void SetResource(ulong value)
     {
-        _resourceText.text = $"{_currentResource.UlongToComma()} C";
+        _resource = value;
+    }
+
+    /// <summary>リソースを増加させる</summary>
+    /// <param name="value">増加量</param>
+    public void AddResource(ulong value)
+    {
+        //if (_isFever)
+        //{
+        //    SetResource(GetResource() + value * 7);
+        //}
+        SetResource(GetResource() + value);
+        // テキストを更新
+        UpdateResourceText();
+    }
+
+    /// <summary>リソースを減少させる</summary>
+    /// <param name="value">減少量</param>
+    public void SubtractResource(ulong value)
+    {
+        SetResource(GetResource() - value);
+        // テキストを更新
+        UpdateResourceText();
+    }
+
+/// <summary>リソースを表示するテキストを同期する</summary>
+    void UpdateResourceText()
+    {
+        _resourceText.text = $"{_resource.UlongToComma()} C";
     }
 
     /// <summary>ショップを有効化するメソッド</summary>
     void Activate()
     {
-        if (_cursor.GetComponent<Facility>()._basePrice <= _resourceManager.GetResource() && _isCursorEnabled == false)
+        if (_cursor.GetComponent<Facility>()._basePrice <= GetResource() && _isCursorEnabled == false)
         {
             _isCursorEnabled = true;
             _cursor.SetActive(true);
             _cursor.GetComponent<Facility>()._ownedFacility.SetActive(true);
         }
-        if (_grandma.GetComponent<Facility>()._basePrice <= _resourceManager.GetResource() && _isGrandmaEnabled == false)
+        if (_grandma.GetComponent<Facility>()._basePrice <= GetResource() && _isGrandmaEnabled == false)
         {
             _isGrandmaEnabled = true;
             _grandma.SetActive(true);
             _grandma.GetComponent<Facility>()._ownedFacility.SetActive(true);
         }
-        if (_gun.GetComponent<Facility>()._basePrice <= _resourceManager.GetResource() && _isGunEnabled == false)
+        if (_gun.GetComponent<Facility>()._basePrice <= GetResource() && _isGunEnabled == false)
         {
             _isGunEnabled = true;
             _gun.SetActive(true);
             _gun.GetComponent<Facility>()._ownedFacility.SetActive(true);
         }
-        if (_ring.GetComponent<Facility>()._basePrice <= _resourceManager.GetResource() && _isRingEnabled == false)
+        if (_ring.GetComponent<Facility>()._basePrice <= GetResource() && _isRingEnabled == false)
         {
             _isRingEnabled = true;
             _ring.SetActive(true);
             _ring.GetComponent<Facility>()._ownedFacility.SetActive(true);
         }
-        if (_sword.GetComponent<Facility>()._basePrice <= _resourceManager.GetResource() && _isSwordEnabled == false)
+        if (_sword.GetComponent<Facility>()._basePrice <= GetResource() && _isSwordEnabled == false)
         {
             _isSwordEnabled = true;
             _sword.SetActive(true);
@@ -119,26 +147,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddHC(int hc)
-    {
-        _heavenlyCookie += hc;
-    }
-
-    public void SubtractCookie(int c)
-    {
-        _resourceManager.SubtractResource((ulong)c);
-    }
-
     public void ReLife()
     {
-        if(_resourceManager.GetResource() >= 100000000)
+        if(GetResource() >= 100000000)
         {
-            _heavenlyCookie++;
+            _currentHC++;
         }
         _achievementManager.ReincarnatedPerson();
         _eventManager._isAchievedRelife = true;
 
-        _resourceManager.SetResource(0);
+        SetResource(0);
 
         _upgradeManager._cursorUpgradeNum = 0;
         _upgradeManager._grandmaUpgradeNum = 0;

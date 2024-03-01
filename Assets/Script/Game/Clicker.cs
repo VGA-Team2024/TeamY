@@ -13,20 +13,20 @@ public class Clicker : MonoBehaviour, IPointerClickHandler
     public ulong _currentUpgradeFactor = 1;
 
     /// <summary>リソース管理クラス</summary>
-    ResourceManager _resourceManager = null;
+    GameManager _gameManager;
 
     /// <summary>オーディオ管理クラス</summary>
     SoundManager _soundManager = null;
 
     void Start()
     {
-        _resourceManager = ResourceManager.Instance;
+        _gameManager = GameManager.Instance;
         _soundManager = SoundManager.Instance;
     }
     /// <summary>クリック時の処理</summary>
     void OnClick()
     {
-        _resourceManager.AddResource(CalCpS());
+        _gameManager.AddResource(CalCpS());
         _soundManager.PlayOtherSound(0);
     }
     /// <summary>カーソルが上に来た時の処理</summary>
