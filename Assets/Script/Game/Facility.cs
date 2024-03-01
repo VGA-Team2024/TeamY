@@ -64,7 +64,7 @@ public class Facility : MonoBehaviour
     string _PS;
 
     /// <summary>リソース管理クラスのインスタンス</summary>
-    ResourceManager _resourceManager;
+    GameManager _gameManager;
 
     /// <summary>値段記録用のリスト</summary>
     public List<ulong> _priceList = new List<ulong>();
@@ -74,7 +74,7 @@ public class Facility : MonoBehaviour
         // 現在の購入金額を基本購入金額に初期化
         _currentPrice = _basePrice;
 
-        _resourceManager = ResourceManager.Instance;
+        _gameManager = GameManager.Instance;
         _button = gameObject.GetComponent<Button>();
         _image = gameObject.GetComponent<Image>();
 
@@ -94,7 +94,7 @@ public class Facility : MonoBehaviour
     void Update()
     {
         // リソース量が現在の購入金額に満たない場合、ボタンを半透明化する。
-        if(_resourceManager.GetResource() < _currentPrice)
+        if(_gameManager.GetResource() < _currentPrice)
         {
             // ボタン
             _button.enabled = false;
@@ -131,7 +131,7 @@ public class Facility : MonoBehaviour
         if (_timer >= 1.0f)
         {
             _timer = 0;
-            _resourceManager.AddResource(CalTotalCpS());
+            _gameManager.AddResource(CalTotalCpS());
         }
     }
 
@@ -174,7 +174,7 @@ public class Facility : MonoBehaviour
         _priceList.Add(_currentPrice);
 
         // 現在の購入金額だけリソースを減少
-        _resourceManager.SubtractResource(_currentPrice);
+        _gameManager.SubtractResource(_currentPrice);
 
         // 購入倍率を更新
         CalNextMultiplier();

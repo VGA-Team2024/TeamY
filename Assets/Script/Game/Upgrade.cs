@@ -17,7 +17,7 @@ public class Upgrade : MonoBehaviour
     [SerializeField] Facility _facility;
 
     /// <summary>リソース管理クラスのインスタンス</summary>
-    ResourceManager _resourceManager;
+    GameManager _gameManager;
 
     /// <summary>アップグレード管理クラスのインスタンス</summary>
     UpgradeManager _upgradeManager;
@@ -48,7 +48,7 @@ public class Upgrade : MonoBehaviour
 
     void Start()
     {
-        _resourceManager = ResourceManager.Instance;
+        _gameManager = GameManager.Instance;
         _upgradeManager = UpgradeManager.Instance;
         _button = gameObject.GetComponent<Button>();
 
@@ -64,7 +64,7 @@ public class Upgrade : MonoBehaviour
     private void Update()
     {
         // リソース量が現在の購入金額に満たない場合、ボタンを半透明化する。
-        if (_resourceManager.GetResource() < _price)
+        if (_gameManager.GetResource() < _price)
         {
             // ボタン
             _button.enabled = false;
@@ -109,7 +109,7 @@ public class Upgrade : MonoBehaviour
         _facilityText.text = _newText;
 
         // 購入金額だけリソースを減少
-        _resourceManager.SubtractResource(_price);
+        _gameManager.SubtractResource(_price);
 
         if (_upgradeManager._cursorUpgradeNum <= 4)
         {
