@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Facility : MonoBehaviour
+public class OldFacility : MonoBehaviour
 {
     /// <summary>基本リソース生産量</summary>
     [SerializeField] float _baseCPS = 0;
@@ -28,7 +27,7 @@ public class Facility : MonoBehaviour
     public ulong _currentUpgradeFactor = 1;
 
     /// <summary>現在の購入数</summary>
-    public ulong _ownedNum = 0;
+    public ulong _ownedNum = 0; // ここ
 
     /// <summary>アタッチ先のボタン</summary>
     Button _button;
