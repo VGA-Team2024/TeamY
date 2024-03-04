@@ -48,6 +48,12 @@ public class Facility : MonoBehaviour
     /// <summary>施設価格のテキスト</summary>
     [SerializeField] private TextMeshProUGUI _priceText;
 
+    /// <summary>アイコンのスプライト</summary>
+    [SerializeField] Sprite _iconSprite;
+
+    /// <summary>最初にボタンを有効化する際のフラグ</summary>
+    bool _isEnabld = false;
+
     /// <summary>ゲーム管理クラス</summary>
     GameManager _gameManager;
     void Start()
@@ -59,7 +65,16 @@ public class Facility : MonoBehaviour
     }
     void Update()
     {
-        
+        if(_gameManager.GetResource() >= _basePrice && _isEnabld == false)
+        {
+            // 有効化フラグを切り替える
+            _isEnabld = true;
+            SetButtonEnablement(2);
+        }
+        if(_gameManager.GetResource() < CalPrice())
+        {
+            SetButtonEnablement(1);
+        }
     }
 
     /// <summary>データの初期化</summary>
@@ -85,15 +100,24 @@ public class Facility : MonoBehaviour
         _priceText.text = $"{price.UlongToComma()} C";
     }
 
-    /// <summary>施設の購入時に実行する処理</summary>
+    /// <summary>施設の購入時に呼ばれる処理</summary>
     void Purchase()
     {
-        // 施設の所持数を増加させる
-        _facilityNum++;
         // 施設の値段だけ所持クッキー量を減少させる
         Payment();
+        // 施設の所持数を増加させる
+        _facilityNum++;
         // 価格テキストを"次の値段"に更新
-        _priceText.text = $"{CalPrice() * _priceRate} C";
+        _priceText.text = $"{CalPrice()} C";
+    }
+
+    /// <summary>施設の売却時に呼ばれる処理</summary>
+    public void Sell()
+    {
+        // 施設の所持数を減少させる
+        _facilityNum--;
+        // 施設の値段の2/3だけ所持クッキー量を増加させる
+        PayBack();
     }
 
     /// <summary>購入ボタンの表示・非表示を設定する</summary>
@@ -195,15 +219,27 @@ public class Facility : MonoBehaviour
         _gameManager.SubtractResource(CalPrice());
     }
 
-    /// <summary>施設の売却時に実行する処理</summary>
-    void PayBack()
+    /// <summary>施設の売却時に呼ばれる処理</summary>
+    public void PayBack()
     {
-
+        // 施設の値段の2/3だけクッキーを払い戻す
+        _gameManager.AddResource(CalPrice() * 2 / 3);
     }
 
-    /// <summary>転生時に実行する処理</summary>
-    void Reset()
+    /// <summary>転生時に呼ばれる処理</summary>
+    public void Reset()
     {
-        
+        // 施設の所持数を初期化
+        _facilityNum = 0;
+        // アップグレードの所持数を初期化
+        _upgradeNum = 0;
+        // 施設アイコンを初期化
+        _iconImage.sprite = _iconSprite;
+        // 名前テキストを初期化
+        _nameText.text = _name;
+        // 価格テキストを初期化
+        _priceText.text = $"{_basePrice} C";
+        // 有効化フラグの初期化
+        _isEnabld = false;
     }
 }
