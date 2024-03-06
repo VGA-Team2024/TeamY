@@ -8,7 +8,7 @@ public class Facility : MonoBehaviour
 {
     /// <summary>施設名</summary>
     [Header("施設の名前")]
-    [SerializeField] string _name;
+    [SerializeField] public string _name;
 
     /// <summary>基本クッキー生産量</summary>
     [Header("基本クッキー生産量")]
@@ -16,7 +16,7 @@ public class Facility : MonoBehaviour
 
     /// <summary>基本購入金額</summary>
     [Header("基本購入金額")]
-    [SerializeField] ulong _basePrice;
+    [SerializeField] public ulong _basePrice;
 
     /// <summary>購入ごとの購入金額の上昇倍率</summary>
     const float _priceRate = 1.15f;
@@ -37,7 +37,7 @@ public class Facility : MonoBehaviour
     Image _buttonImage;
 
     /// <summary>施設アイコンのイメージ</summary>
-    [SerializeField] private Image _iconImage;
+    [SerializeField] public Image _iconImage;
 
     /// <summary>テキストのイメージ</summary>
     [SerializeField] private Image _textImage;
@@ -61,23 +61,23 @@ public class Facility : MonoBehaviour
         // 初期化
         SetUp();
         // クッキーを増加させるコルーチンの呼び出し
-        StartCoroutine(AddCookie());
+        StartCoroutine(GenerateCookie());
     }
     void Update()
     {
-        if(_gameManager.GetResource() >= _basePrice && _isEnabld == false)
+        if(_gameManager.GetCookie() >= _basePrice && _isEnabld == false)
         {
             // 有効化フラグを切り替える
             _isEnabld = true;
             SetButtonEnablement(2);
         }
-        if(_gameManager.GetResource() < CalPrice())
+        if(_gameManager.GetCookie() < CalPrice())
         {
             SetButtonEnablement(1);
         }
     }
 
-    /// <summary>データの初期化</summary>
+    /// <summary>Start()で呼ばれる初期設定</summary>
     void SetUp()
     {
         // ゲーム管理クラスのインスタンスを取得
@@ -103,12 +103,12 @@ public class Facility : MonoBehaviour
     /// <summary>施設の購入時に呼ばれる処理</summary>
     void Purchase()
     {
-        // 施設の値段だけ所持クッキー量を減少させる
+        // 施設の購入金額分のクッキーを減少させる
         Payment();
         // 施設の所持数を増加させる
         _facilityNum++;
         // 価格テキストを"次の値段"に更新
-        _priceText.text = $"{CalPrice()} C";
+        SetPriceText(CalPrice());
     }
 
     /// <summary>施設の売却時に呼ばれる処理</summary>
@@ -162,7 +162,7 @@ public class Facility : MonoBehaviour
                 Color opaqueImageColor = new Color(1, 1, 1, 1);
                 Color opaqueTextColor = new Color(0, 0, 0, 1);
                 // ボタンを無効化
-                _button.enabled = false;
+                _button.enabled = true;
                 // 各イメージを非表示にする
                 _buttonImage.color = opaqueImageColor;
                 _iconImage.color = opaqueImageColor;
@@ -197,12 +197,12 @@ public class Facility : MonoBehaviour
     }
 
     /// <summary>1秒ごとにCpS分だけクッキーを増加させる</summary>
-    IEnumerator AddCookie()
+    IEnumerator GenerateCookie()
     {
         while (true)
         {
             yield return new WaitForSeconds(1);
-            _gameManager.AddResource(CalCpS());
+            _gameManager.AddCookie(CalCpS());
             Debug.Log("AddCookie Called");
         }
     }
@@ -216,14 +216,14 @@ public class Facility : MonoBehaviour
     /// <summary>施設の値段だけクッキーを減少させる</summary>
     void Payment()
     {
-        _gameManager.SubtractResource(CalPrice());
+        _gameManager.SubtractCookie(CalPrice());
     }
 
     /// <summary>施設の売却時に呼ばれる処理</summary>
     public void PayBack()
     {
         // 施設の値段の2/3だけクッキーを払い戻す
-        _gameManager.AddResource(CalPrice() * 2 / 3);
+        _gameManager.AddCookie(CalPrice() * 2 / 3);
     }
 
     /// <summary>転生時に呼ばれる処理</summary>
@@ -235,11 +235,27 @@ public class Facility : MonoBehaviour
         _upgradeNum = 0;
         // 施設アイコンを初期化
         _iconImage.sprite = _iconSprite;
-        // 名前テキストを初期化
-        _nameText.text = _name;
         // 価格テキストを初期化
-        _priceText.text = $"{_basePrice} C";
+        SetPriceText(_basePrice);
         // 有効化フラグの初期化
         _isEnabld = false;
+    }
+
+    /// <summary>施設の所持数を返す</summary>
+    public int GetFacilityNum()
+    {
+        return _facilityNum;
+    }
+
+    /// <summary>アップグレードの所持数を返す</summary>
+    public int GetUpgradeNum()
+    {
+        return _upgradeNum;
+    }
+
+    /// <summary>アップグレードの所持数を1つ増やす</summary>
+    public void AddUpgradeNum()
+    {
+        _upgradeNum++;
     }
 }

@@ -1,11 +1,11 @@
 using System.Collections;
-using System.Resources;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class GoldenCookie : MonoBehaviour, IPointerClickHandler
 {
-    GameManager _gameManager = null;
+    /// <summary>ゲーム管理クラス</summary>
+    GameManager _gameManager;
     EventManager _eventManager = null;
     AchievementManager _achievementManager = null;
 
@@ -14,9 +14,10 @@ public class GoldenCookie : MonoBehaviour, IPointerClickHandler
         _gameManager = GameManager.Instance;
         _eventManager = EventManager.Instance;
         _achievementManager = AchievementManager.Instance;
-        DestroySelf();
+        // 時間が経過したら破壊される
+        DestroyByTime();
     }
-    public IEnumerator DestroySelf()
+    public IEnumerator DestroyByTime()
     {
         yield return new WaitForSecondsRealtime(13f);
         Destroy(gameObject);
@@ -24,13 +25,7 @@ public class GoldenCookie : MonoBehaviour, IPointerClickHandler
     /// <summary>クリック時の処理</summary>
     void OnClick()
     {
-        if (_eventManager._isAchievedLucky == false)
-        {
-            _eventManager._isAchievedLucky = true;
-            _achievementManager.Lucky();
-        }
-        //_gameManager._isFever = true;
-        gameObject.SetActive(false);
+        
     }
     public void OnPointerClick(PointerEventData eventData)
     {
