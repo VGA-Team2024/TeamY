@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>イベント用のオブジェクト</summary>
 public class GoldenCookie : MonoBehaviour, IPointerClickHandler
 {
     /// <summary>ゲーム管理クラス</summary>

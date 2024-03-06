@@ -1,38 +1,32 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+/// <summary>実績を管理するクラス</summary>
 public class AchievementManager : MonoBehaviour
 {
-    //[Header("アポカリプス")]public bool IsApocalypse;
-    //[Header("ババアグッバイ")] public bool IsBabaAgbye;
-    //[Header("ラッキー")] public bool IsLucky;
-    //[Header("転生者")] public bool IsReincarnatedPerson;
-    ////あるかわからない
-    //[Header("世界崩壊")] public bool IsWorldCollapse;
-    //[Header("無限ループ")] public bool IsInfiniteLoop;
-    //[Header("すべてを知るもの")] public bool IsKnowsEverything;
-    //[Header("全クリ")] public bool IsAllChestnuts;
+    /// <summary>実績アイコン</summary>
+    [Header("実績のアイコン")]
+    [SerializeField] public Sprite[] _achievementIcon;
 
-    //実績のアイコンを上の順番に入れて欲しい↑（boolの順番に）
-    [SerializeField, Header("実績アイコン")] 
-    public List<Sprite> _achieveIcon = new List<Sprite>();
+    /// <summary>実績名</summary>
+    [Header("実績の名前")]
+    [SerializeField] public string[] _achievementName;
 
-    //実績の名前（TMPに表示するText）
-    [SerializeField, Header("実績の名前")] 
-    public List<string> _achieveName = new List<string>();
+    /// <summary>実績ウィンドウのアイコン</summary>
+    [Header("実績ウィンドウのアイコン")] 
+    [SerializeField] private Image _windowImage;
 
-    //アイコンのimage
-    [SerializeField, Header("アイコン")] Image _icon;
-    //実績の名前
-    [SerializeField, Header("テキスト")] TextMeshProUGUI _name;
-    //実績の親image
-    [SerializeField, Header("実績")] GameObject _achieve;
-    //待って欲しい時間（実績が消えるまで）
-    public int timeOut = 5;
+    /// <summary>実績ウィンドウのテキスト</summary>
+    [Header("実績ウィンドウのテキスト")] 
+    [SerializeField] TextMeshProUGUI _windowText;
 
+    /// <summary>実績ウィンドウのオブジェクト</summary>
+    [Header("実績ウィンドウ")] 
+    [SerializeField] GameObject _achievementWindow;
+
+    /// <summary>インスタンス</summary>
     public static AchievementManager Instance { get; private set; }
 
     /// <summary>イベント管理クラス</summary>
@@ -47,106 +41,94 @@ public class AchievementManager : MonoBehaviour
     }
     private void Start()
     {
-        // 実績ダイアログを非表示に設定
-        _achieve.SetActive(false);
+        // 実績ウィンドウを無効にする
+        _achievementWindow.SetActive(false);
         // 各クラスのインスタンスを取得
         _eventManager = EventManager.Instance;
         _soundManager = SoundManager.Instance;
     }
 
-    //アポカリプス
+    /// <summary>実績を達成した際に呼ばれる共通処理</summary>
+    /// <param name="num">実績の識別番号</param>
+    public void Achieve(int num)
+    {
+        // 実績ウィンドウを有効にする
+        _achievementWindow.SetActive(true);
+        // 実績ウィンドウのアイコンを更新する
+        _windowImage.sprite = _achievementIcon[num];
+        // 実績ウィンドウのテキストを更新する
+        _windowText.text = _achievementName[num];
+        // 実績ウィンドウを無効にする
+        SetInactive();
+    }
+
+    /// <summary>実績達成時のSEを再生する</summary>
+    public void PlayAchievementSound()
+    {
+        _soundManager.PlayOtherSound(5);
+    }
+
+    /// <summary>実績：「アポカリプス」</summary>
     public void Apocalypse()
     {
-        _achieve.SetActive(true);
-        _icon.sprite = _achieveIcon[0];
-        _name.text = _achieveName[0];
-        _soundManager.PlayOtherSound(5);
-        StartCoroutine(Hide());
+        Achieve(0);
+        PlayAchievementSound();
     }
-    //ババアグッバイ
-    public void BabaAgbye()
+
+    /// <summary>実績：「ババアグッバイ」</summary>
+    public void GoodByeGrandma()
     {
-        _achieve.SetActive(true);
-        _icon.sprite = _achieveIcon[1];
-        _name.text = _achieveName[1];
-        _soundManager.PlayOtherSound(5);
-        StartCoroutine(Hide());
+        Achieve(1);
+        PlayAchievementSound();
     }
-    //ラッキー
+
+    /// <summary>実績：「ラッキー！」</summary>
     public void Lucky()
     {
-        _achieve.SetActive(true);
-        _icon.sprite = _achieveIcon[2];
-        _name.text = _achieveName[2];
-        _soundManager.PlayOtherSound(5);
-        StartCoroutine(Hide());
-    }
-    //転生者
-    public void ReincarnatedPerson()
-    {
-        _achieve.SetActive(true);
-        _icon.sprite = _achieveIcon[3];
-        _name.text = _achieveName[3];
-        _soundManager.PlayOtherSound(5);
-        StartCoroutine(Hide());
-    }
-    //世界崩壊
-    public void WorldCollapse()
-    {
-        _eventManager._isPlayedStory4_1 = true;
-        _achieve.SetActive(true);
-        _icon.sprite = _achieveIcon[4];
-        _name.text = _achieveName[4];
-        _soundManager.PlayOtherSound(5);
-        StartCoroutine(Hide());
-    }
-    //無限ループ
-    public void InfiniteLoop()
-    {
-        _eventManager._isPlayedStory4_2 = true;
-        _achieve.SetActive(true);
-        _icon.sprite = _achieveIcon[5];
-        _name.text = _achieveName[5];
-        _soundManager.PlayOtherSound(5);
-        StartCoroutine(Hide());
-    }
-    //すべてを知るもの
-    public void KnowsEverything()
-    {
-        _eventManager._isPlayedStory4_3 = true;
-        _achieve.SetActive(true);
-        _icon.sprite = _achieveIcon[6];
-        _name.text = _achieveName[6];
-        _soundManager.PlayOtherSound(5);
-        StartCoroutine(Hide());
-    }
-    //全クリ
-    public void AllChestnuts()
-    {
-        _achieve.SetActive(true);
-        _icon.sprite = _achieveIcon[7];
-        _name.text = _achieveName[7];
-        _soundManager.PlayOtherSound(5);
-        StartCoroutine(Hide());
+        Achieve(2);
+        PlayAchievementSound();
     }
 
-    private IEnumerator Hide()
+    /// <summary>実績：「転生者」</summary>
+    public void ReLife()
     {
-        //
-        yield return new WaitForSeconds(timeOut);
-
-        _achieve.SetActive(false);
+        Achieve(3);
+        PlayAchievementSound();
     }
 
-
-
-    /*関係ない
-    public void Achieve(int Number)
+    /// <summary>実績：「世界崩壊」</summary>
+    public void WorldEnd()
     {
-        _achieve.SetActive(true);
-        _icon.sprite = _achieveIcon[Number];
-        _name.text = _achieveName[Number];
-    StartCoroutine(Hide());
-    }*/
+        Achieve(4);
+        PlayAchievementSound();
+    }
 
+    /// <summary>実績：「無限ループ」</summary>
+    public void InfinityLoop()
+    {
+        Achieve(5);
+        PlayAchievementSound();
+    }
+
+    /// <summary>実績：「すべてを知る者」</summary>
+    public void Almighty()
+    {
+        Achieve(6);
+        PlayAchievementSound();
+    }
+
+    /// <summary>実績：「全クリ」</summary>
+    public void Complete()
+    {
+        Achieve(7);
+        PlayAchievementSound();
+    }
+
+    /// <summary>実績ウィンドウを無効にする</summary>
+    public IEnumerator SetInactive()
+    {
+        // 5秒待つ
+        yield return new WaitForSeconds(5);
+        _achievementWindow.SetActive(false);
+    }
 }
