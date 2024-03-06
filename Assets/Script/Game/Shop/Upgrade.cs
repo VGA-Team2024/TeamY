@@ -162,7 +162,7 @@ public class Upgrade : MonoBehaviour
     /// <summary>アップグレードの値段だけクッキーを減少させる</summary>
     void Payment()
     {
-        _gameManager.SubtractResource(CalPrice());
+        _gameManager.SubtractCookie(CalPrice());
     }
 
     /// <summary>販売条件を満たしているかを確認する</summary>

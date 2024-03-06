@@ -3,16 +3,17 @@ using UnityEngine.EventSystems;
 
 public class Clicker : MonoBehaviour, IPointerClickHandler
 {
-    /// <summary>基本リソース生産量</summary>
-    [SerializeField] float _baseCPS = 0;
+    /// <summary>基本クッキー生産量</summary>
+    [Header("基本クッキー生産量")]
+    [SerializeField] float _baseCpS;
 
-    /// <summary>リソース生産量</summary>
-    float _cps = 0;
+    /// <summary>アップグレードによるCpSの上昇倍率</summary>
+    const float _upgradeRate = 2f;
 
-    /// <summary>現在のアップグレード倍率</summary>
-    public ulong _currentUpgradeFactor = 1;
+    /// <summary>現在のアップグレード所持数</summary>
+    int _upgradeNum;
 
-    /// <summary>リソース管理クラス</summary>
+    /// <summary>ゲーム管理クラス</summary>
     GameManager _gameManager;
 
     /// <summary>オーディオ管理クラス</summary>
@@ -23,32 +24,47 @@ public class Clicker : MonoBehaviour, IPointerClickHandler
         _gameManager = GameManager.Instance;
         _soundManager = SoundManager.Instance;
     }
-    /// <summary>クリック時の処理</summary>
-    void OnClick()
-    {
-        _gameManager.AddResource(CalCpS());
-        _soundManager.PlayOtherSound(0);
-    }
+
     /// <summary>カーソルが上に来た時の処理</summary>
     public void OnEnter()
     {
         this.gameObject.transform.localScale = new Vector3(5f, 5f, 5f);
         _soundManager.PlayOtherSound(1);
     }
+
     /// <summary>カーソルが離れた時の処理</summary>
     public void OnExit()
     {
         this.gameObject.transform.localScale = new Vector3(4f, 4f, 4f);
     }
-    /// <summary>RPSを計算するメソッド</summary>
-    ulong CalCpS()
+
+    /// <summary>クリック時の処理</summary>
+    void OnClick()
     {
-        _cps = _baseCPS * _currentUpgradeFactor;
-        return (ulong)_cps;
+        _gameManager.AddCookie(CalCpS());
+        _soundManager.PlayOtherSound(0);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         OnClick();
+    }
+
+    /// <summary>アップグレード倍率を乗算したCpSを計算する</summary>
+    /// <returns>現在のCpS</returns>
+    ulong CalCpS()
+    {
+        // アップグレードによるCpSの上昇倍率
+        float upgradeBuff;
+        // アップグレードを購入していない場合1にする
+        if (_upgradeNum == 0)
+        {
+            upgradeBuff = 1;
+        }
+        else
+        {
+            upgradeBuff = _upgradeRate * _upgradeNum;
+        }
+        return (ulong)(_baseCpS * upgradeBuff);
     }
 }
