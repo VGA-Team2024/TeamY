@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>アップグレード</summary>
 public class Upgrade : MonoBehaviour
 {
     /// <summary>対応する施設クラス</summary>
